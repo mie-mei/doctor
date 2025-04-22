@@ -1,29 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Button } from '../components/button.jsx'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import DoctorPanel from "./pages/DoctorPanel.jsx";
+import PatientPanel from "./pages/PatientPanel.jsx";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-    <header>
-      <h1>Doctor Appointments</h1>
-      <nav>
-        <a href="/">Home</a> 
-        <a href="/appointments">Appointments</a>
-        <a href="/contact">Contact</a>
-      </nav>
-    </header>
-
-
-      <Button />
-
-      Hello
-    </>
-  )
+    <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/doctor" element={<DoctorPanel />} />
+          <Route path="/patient" element={<PatientPanel />} />
+        </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

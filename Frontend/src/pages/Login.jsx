@@ -1,0 +1,11 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const Login = () => (
+  <div>
+    <h1>Welcome to the Doctor Appointment App</h1>
+    <Link to="/login">Login</Link> | <Link to="/register">Register</Link>
+  </div>
+);
+
+export default Login;
