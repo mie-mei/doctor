@@ -1,9 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "../styles/Logo.css";
 
-export const Logo = () => (
-  <div className="logo">
-    <img src="../src/assets/logo.svg" alt="Logo" />
-    <span>Dr.</span> Mohammed
-  </div>
-);
+export const Logo = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div
+      className="logo"
+      onClick={() => navigate("/")} // Use navigate to redirect to the home page
+      style={{ cursor: "pointer" }}
+    >
+      <img src="../src/assets/logo.svg" alt="Logo" />
+      <span>Dr.</span> Mohammed
+    </div>
+  );
+};
