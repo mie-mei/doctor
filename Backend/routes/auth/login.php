@@ -1,23 +1,19 @@
 <?php
 session_start();
-require_once '../../config/database.php';
+require_once '../../controllers/auth/LoginController.php';
 
+// Allow requests from the frontend
+header('Access-Control-Allow-Origin: http://localhost:5173');
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Headers: Content-Type');
 header('Content-Type: application/json');
 
+// Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input = json_decode(file_get_contents('php://input'), true);
     $email = $input['email'] ?? '';
     $password = $input['password'] ?? '';
 
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt->execute([$email]);
-    $user = $stmt->fetch();
-
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user_id'] = $user['user_id'];
-        $_SESSION['role'] = $user['role'];
-        echo json_encode(["message" => "Login successful", "role" => $user['role']]);
-    } else {
-        echo json_encode(["error" => "Invalid credentials"]);
-    }
+    $result = LoginController::login($email, $password);
+    echo json_encode($result);
 }
