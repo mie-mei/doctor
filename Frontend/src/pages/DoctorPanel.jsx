@@ -1,20 +1,40 @@
-"use client"
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Logo } from "../components/Logo";
+import { LogoutButton } from "../components/LogoutButton";
+import { checkAuth } from "../utilities/CheckAuth";
+import "../styles/DoctorPanel.css";
 
-import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
-import { Logo } from "../components/Logo"
-import "../styles/DoctorPanel.css"
 
 const DoctorPanel = () => {
-  const [activeTab, setActiveTab] = useState("appointments")
-  const [appointments, setAppointments] = useState([])
-  const [availability, setAvailability] = useState([])
-  const [isAddingAvailability, setIsAddingAvailability] = useState(false)
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    async function verifyUser() {
+      const auth = await checkAuth();
+
+      if (!auth.authenticated) {
+        navigate("/login");
+        alert("You must log in first!");
+      } else if (auth.role !== "doctor") {
+        navigate("/patient-panel");
+        alert("You are not authorized to access this page!");
+      }
+    }
+
+    verifyUser();
+  }, []);
+
+
+  const [activeTab, setActiveTab] = useState("appointments");
+  const [appointments, setAppointments] = useState([]);
+  const [availability, setAvailability] = useState([]);
+  const [isAddingAvailability, setIsAddingAvailability] = useState(false);
   const [newAvailability, setNewAvailability] = useState({
     week_day: "Monday",
     start_time: "09:00",
     end_time: "17:00",
-  })
+  });
 
   // Mock data - in a real app, this would come from an API
   useEffect(() => {
@@ -41,45 +61,72 @@ const DoctorPanel = () => {
         time: "11:15 AM",
         reason: "Prescription renewal",
       },
-    ])
+    ]);
 
     // Simulate fetching availability
     setAvailability([
-      { availabaility_id: 1, week_day: "Monday", start_time: "09:00", end_time: "17:00" },
-      { availabaility_id: 2, week_day: "Tuesday", start_time: "09:00", end_time: "17:00" },
-      { availabaility_id: 3, week_day: "Wednesday", start_time: "09:00", end_time: "17:00" },
-      { availabaility_id: 4, week_day: "Thursday", start_time: "09:00", end_time: "17:00" },
-      { availabaility_id: 5, week_day: "Friday", start_time: "09:00", end_time: "13:00" },
-    ])
-  }, [])
+      {
+        availabaility_id: 1,
+        week_day: "Monday",
+        start_time: "09:00",
+        end_time: "17:00",
+      },
+      {
+        availabaility_id: 2,
+        week_day: "Tuesday",
+        start_time: "09:00",
+        end_time: "17:00",
+      },
+      {
+        availabaility_id: 3,
+        week_day: "Wednesday",
+        start_time: "09:00",
+        end_time: "17:00",
+      },
+      {
+        availabaility_id: 4,
+        week_day: "Thursday",
+        start_time: "09:00",
+        end_time: "17:00",
+      },
+      {
+        availabaility_id: 5,
+        week_day: "Friday",
+        start_time: "09:00",
+        end_time: "13:00",
+      },
+    ]);
+  }, []);
 
   const handleAddAvailability = () => {
     // In a real app, this would send a POST request to the server
     const newAvailabilityItem = {
       availabaility_id: availability.length + 1,
       ...newAvailability,
-    }
-    setAvailability([...availability, newAvailabilityItem])
-    setIsAddingAvailability(false)
+    };
+    setAvailability([...availability, newAvailabilityItem]);
+    setIsAddingAvailability(false);
     setNewAvailability({
       week_day: "Monday",
       start_time: "09:00",
       end_time: "17:00",
-    })
-  }
+    });
+  };
 
   const handleDeleteAvailability = (id) => {
     // In a real app, this would send a DELETE request to the server
-    setAvailability(availability.filter((item) => item.availabaility_id !== id))
-  }
+    setAvailability(
+      availability.filter((item) => item.availabaility_id !== id)
+    );
+  };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setNewAvailability({
       ...newAvailability,
       [name]: value,
-    })
-  }
+    });
+  };
 
   return (
     <div className="doctor-panel">
@@ -87,9 +134,7 @@ const DoctorPanel = () => {
         <Logo />
         <div className="user-info">
           <span className="user-name">Dr. Mohammed</span>
-          <Link to="/" className="logout-button">
-            Logout
-          </Link>
+          <LogoutButton /> {/* Use the LogoutButton component here */}
         </div>
       </header>
 
@@ -97,19 +142,25 @@ const DoctorPanel = () => {
         <aside className="panel-sidebar">
           <nav className="panel-nav">
             <button
-              className={`nav-button ${activeTab === "appointments" ? "active" : ""}`}
+              className={`nav-button ${
+                activeTab === "appointments" ? "active" : ""
+              }`}
               onClick={() => setActiveTab("appointments")}
             >
               Appointments
             </button>
             <button
-              className={`nav-button ${activeTab === "availability" ? "active" : ""}`}
+              className={`nav-button ${
+                activeTab === "availability" ? "active" : ""
+              }`}
               onClick={() => setActiveTab("availability")}
             >
               Availability
             </button>
             <button
-              className={`nav-button ${activeTab === "patients" ? "active" : ""}`}
+              className={`nav-button ${
+                activeTab === "patients" ? "active" : ""
+              }`}
               onClick={() => setActiveTab("patients")}
             >
               Patients
@@ -124,10 +175,15 @@ const DoctorPanel = () => {
               <div className="appointments-list">
                 {appointments.length > 0 ? (
                   appointments.map((appointment) => (
-                    <div className="appointment-card" key={appointment.appointment_id}>
+                    <div
+                      className="appointment-card"
+                      key={appointment.appointment_id}
+                    >
                       <div className="appointment-header">
                         <h3>{appointment.patient_name}</h3>
-                        <span className="appointment-date">{appointment.date}</span>
+                        <span className="appointment-date">
+                          {appointment.date}
+                        </span>
                       </div>
                       <div className="appointment-details">
                         <p>
@@ -154,7 +210,10 @@ const DoctorPanel = () => {
             <div className="availability-section">
               <div className="section-header">
                 <h2>Manage Your Availability</h2>
-                <button className="add-button" onClick={() => setIsAddingAvailability(true)}>
+                <button
+                  className="add-button"
+                  onClick={() => setIsAddingAvailability(true)}
+                >
                   Add New Availability
                 </button>
               </div>
@@ -164,7 +223,11 @@ const DoctorPanel = () => {
                   <h3>Add New Availability</h3>
                   <div className="form-group">
                     <label>Day of Week:</label>
-                    <select name="week_day" value={newAvailability.week_day} onChange={handleInputChange}>
+                    <select
+                      name="week_day"
+                      value={newAvailability.week_day}
+                      onChange={handleInputChange}
+                    >
                       <option value="Monday">Monday</option>
                       <option value="Tuesday">Tuesday</option>
                       <option value="Wednesday">Wednesday</option>
@@ -185,13 +248,24 @@ const DoctorPanel = () => {
                   </div>
                   <div className="form-group">
                     <label>End Time:</label>
-                    <input type="time" name="end_time" value={newAvailability.end_time} onChange={handleInputChange} />
+                    <input
+                      type="time"
+                      name="end_time"
+                      value={newAvailability.end_time}
+                      onChange={handleInputChange}
+                    />
                   </div>
                   <div className="form-actions">
-                    <button className="cancel-button" onClick={() => setIsAddingAvailability(false)}>
+                    <button
+                      className="cancel-button"
+                      onClick={() => setIsAddingAvailability(false)}
+                    >
                       Cancel
                     </button>
-                    <button className="save-button" onClick={handleAddAvailability}>
+                    <button
+                      className="save-button"
+                      onClick={handleAddAvailability}
+                    >
                       Save
                     </button>
                   </div>
@@ -205,14 +279,22 @@ const DoctorPanel = () => {
                   <span className="actions-column">Actions</span>
                 </div>
                 {availability.map((item) => (
-                  <div className="availability-item" key={item.availabaility_id}>
+                  <div
+                    className="availability-item"
+                    key={item.availabaility_id}
+                  >
                     <span className="day-column">{item.week_day}</span>
                     <span className="time-column">
                       {item.start_time} - {item.end_time}
                     </span>
                     <span className="actions-column">
                       <button className="edit-button">Edit</button>
-                      <button className="delete-button" onClick={() => handleDeleteAvailability(item.availabaility_id)}>
+                      <button
+                        className="delete-button"
+                        onClick={() =>
+                          handleDeleteAvailability(item.availabaility_id)
+                        }
+                      >
                         Delete
                       </button>
                     </span>
@@ -277,7 +359,7 @@ const DoctorPanel = () => {
         </main>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DoctorPanel
+export default DoctorPanel;

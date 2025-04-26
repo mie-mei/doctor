@@ -1,23 +1,42 @@
-"use client"
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Logo } from "../components/Logo";
+import { LogoutButton } from "../components/LogoutButton";
+import { checkAuth } from "../utilities/CheckAuth";
+import "../styles/PatientPanel.css";
 
-import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
-import { Logo } from "../components/Logo"
-import "../styles/PatientPanel.css"
 
 const PatientPanel = () => {
-  const [activeTab, setActiveTab] = useState("dashboard")
-  const [appointments, setAppointments] = useState([])
-  const [doctorAvailability, setDoctorAvailability] = useState([])
-  const [isBookingAppointment, setIsBookingAppointment] = useState(false)
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    async function verifyUser() {
+      const auth = await checkAuth();
+
+      if (!auth.authenticated) {
+        navigate("/login");
+        alert("You must log in first!");
+      } else if (auth.role !== "patient") {
+        navigate("/doctor-panel");
+        alert("You are not authorized to access this page!");
+      }
+    }
+
+    verifyUser();
+  }, []);
+
+  const [activeTab, setActiveTab] = useState("dashboard");
+  const [appointments, setAppointments] = useState([]);
+  const [doctorAvailability, setDoctorAvailability] = useState([]);
+  const [isBookingAppointment, setIsBookingAppointment] = useState(false);
   const [newAppointment, setNewAppointment] = useState({
     doctor_id: 1,
     date: "",
     time: "",
     reason: "",
-  })
-  const [selectedDay, setSelectedDay] = useState(null)
-  const [availableTimes, setAvailableTimes] = useState([])
+  });
+  const [selectedDay, setSelectedDay] = useState(null);
+  const [availableTimes, setAvailableTimes] = useState([]);
 
   // Mock data - in a real app, this would come from an API
   useEffect(() => {
@@ -39,7 +58,7 @@ const PatientPanel = () => {
         reason: "Follow-up consultation",
         status: "completed",
       },
-    ])
+    ]);
 
     // Simulate fetching doctor availability
     setDoctorAvailability([
@@ -54,43 +73,45 @@ const PatientPanel = () => {
           { day: "Friday", start_time: "09:00", end_time: "13:00" },
         ],
       },
-    ])
-  }, [])
+    ]);
+  }, []);
 
   const handleDaySelect = (day) => {
-    setSelectedDay(day)
+    setSelectedDay(day);
 
     // Generate available time slots based on doctor's availability
-    const doctorSchedule = doctorAvailability[0].availability.find((a) => a.day === day)
+    const doctorSchedule = doctorAvailability[0].availability.find(
+      (a) => a.day === day
+    );
 
     if (doctorSchedule) {
-      const start = Number.parseInt(doctorSchedule.start_time.split(":")[0])
-      const end = Number.parseInt(doctorSchedule.end_time.split(":")[0])
+      const start = Number.parseInt(doctorSchedule.start_time.split(":")[0]);
+      const end = Number.parseInt(doctorSchedule.end_time.split(":")[0]);
 
-      const times = []
+      const times = [];
       for (let hour = start; hour < end; hour++) {
-        times.push(`${hour.toString().padStart(2, "0")}:00`)
-        times.push(`${hour.toString().padStart(2, "0")}:30`)
+        times.push(`${hour.toString().padStart(2, "0")}:00`);
+        times.push(`${hour.toString().padStart(2, "0")}:30`);
       }
 
-      setAvailableTimes(times)
+      setAvailableTimes(times);
     } else {
-      setAvailableTimes([])
+      setAvailableTimes([]);
     }
-  }
+  };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setNewAppointment({
       ...newAppointment,
       [name]: value,
-    })
-  }
+    });
+  };
 
   const handleBookAppointment = () => {
     // In a real app, this would send a POST request to the server
-    const appointmentDate = new Date(newAppointment.date)
-    const formattedDate = appointmentDate.toISOString().split("T")[0]
+    const appointmentDate = new Date(newAppointment.date);
+    const formattedDate = appointmentDate.toISOString().split("T")[0];
 
     const newAppointmentItem = {
       appointment_id: appointments.length + 1,
@@ -99,27 +120,31 @@ const PatientPanel = () => {
       time: newAppointment.time,
       reason: newAppointment.reason,
       status: "upcoming",
-    }
+    };
 
-    setAppointments([...appointments, newAppointmentItem])
-    setIsBookingAppointment(false)
+    setAppointments([...appointments, newAppointmentItem]);
+    setIsBookingAppointment(false);
     setNewAppointment({
       doctor_id: 1,
       date: "",
       time: "",
       reason: "",
-    })
-    setSelectedDay(null)
-    setAvailableTimes([])
-  }
+    });
+    setSelectedDay(null);
+    setAvailableTimes([]);
+  };
 
   const getUpcomingAppointments = () => {
-    return appointments.filter((appointment) => appointment.status === "upcoming")
-  }
+    return appointments.filter(
+      (appointment) => appointment.status === "upcoming"
+    );
+  };
 
   const getPastAppointments = () => {
-    return appointments.filter((appointment) => appointment.status === "completed")
-  }
+    return appointments.filter(
+      (appointment) => appointment.status === "completed"
+    );
+  };
 
   return (
     <div className="patient-panel">
@@ -127,9 +152,7 @@ const PatientPanel = () => {
         <Logo />
         <div className="user-info">
           <span className="user-name">John Smith</span>
-          <Link to="/" className="logout-button">
-            Logout
-          </Link>
+          <LogoutButton /> {/* Use the LogoutButton component here */}
         </div>
       </header>
 
@@ -137,7 +160,9 @@ const PatientPanel = () => {
         <aside className="panel-sidebar">
           <nav className="panel-nav">
             <button
-              className={`nav-button ${activeTab === "dashboard" ? "active" : ""}`}
+              className={`nav-button ${
+                activeTab === "dashboard" ? "active" : ""
+              }`}
               onClick={() => setActiveTab("dashboard")}
             >
               Dashboard
@@ -149,7 +174,9 @@ const PatientPanel = () => {
               Book Appointment
             </button>
             <button
-              className={`nav-button ${activeTab === "history" ? "active" : ""}`}
+              className={`nav-button ${
+                activeTab === "history" ? "active" : ""
+              }`}
               onClick={() => setActiveTab("history")}
             >
               Appointment History
@@ -165,11 +192,15 @@ const PatientPanel = () => {
               <div className="dashboard-summary">
                 <div className="summary-card">
                   <h3>Upcoming Appointments</h3>
-                  <span className="summary-count">{getUpcomingAppointments().length}</span>
+                  <span className="summary-count">
+                    {getUpcomingAppointments().length}
+                  </span>
                 </div>
                 <div className="summary-card">
                   <h3>Past Appointments</h3>
-                  <span className="summary-count">{getPastAppointments().length}</span>
+                  <span className="summary-count">
+                    {getPastAppointments().length}
+                  </span>
                 </div>
               </div>
 
@@ -178,10 +209,15 @@ const PatientPanel = () => {
                 {getUpcomingAppointments().length > 0 ? (
                   <div className="appointments-list">
                     {getUpcomingAppointments().map((appointment) => (
-                      <div className="appointment-card" key={appointment.appointment_id}>
+                      <div
+                        className="appointment-card"
+                        key={appointment.appointment_id}
+                      >
                         <div className="appointment-header">
                           <h4>{appointment.doctor_name}</h4>
-                          <span className="appointment-date">{appointment.date}</span>
+                          <span className="appointment-date">
+                            {appointment.date}
+                          </span>
                         </div>
                         <div className="appointment-details">
                           <p>
@@ -193,7 +229,9 @@ const PatientPanel = () => {
                         </div>
                         <div className="appointment-actions">
                           <button className="action-button">Reschedule</button>
-                          <button className="action-button cancel">Cancel</button>
+                          <button className="action-button cancel">
+                            Cancel
+                          </button>
                         </div>
                       </div>
                     ))}
@@ -211,8 +249,13 @@ const PatientPanel = () => {
 
               {!isBookingAppointment ? (
                 <div className="booking-intro">
-                  <p>Ready to schedule your next appointment with Dr. Mohammed?</p>
-                  <button className="primary-button" onClick={() => setIsBookingAppointment(true)}>
+                  <p>
+                    Ready to schedule your next appointment with Dr. Mohammed?
+                  </p>
+                  <button
+                    className="primary-button"
+                    onClick={() => setIsBookingAppointment(true)}
+                  >
                     Start Booking
                   </button>
                 </div>
@@ -225,12 +268,20 @@ const PatientPanel = () => {
                       name="date"
                       value={newAppointment.date}
                       onChange={(e) => {
-                        handleInputChange(e)
+                        handleInputChange(e);
                         // Get day of week from selected date
-                        const date = new Date(e.target.value)
-                        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-                        const day = days[date.getDay()]
-                        handleDaySelect(day)
+                        const date = new Date(e.target.value);
+                        const days = [
+                          "Sunday",
+                          "Monday",
+                          "Tuesday",
+                          "Wednesday",
+                          "Thursday",
+                          "Friday",
+                          "Saturday",
+                        ];
+                        const day = days[date.getDay()];
+                        handleDaySelect(day);
                       }}
                       min={new Date().toISOString().split("T")[0]}
                     />
@@ -245,15 +296,21 @@ const PatientPanel = () => {
                             {availableTimes.map((time, index) => (
                               <button
                                 key={index}
-                                className={`time-slot ${newAppointment.time === time ? "selected" : ""}`}
-                                onClick={() => setNewAppointment({ ...newAppointment, time })}
+                                className={`time-slot ${
+                                  newAppointment.time === time ? "selected" : ""
+                                }`}
+                                onClick={() =>
+                                  setNewAppointment({ ...newAppointment, time })
+                                }
                               >
                                 {time}
                               </button>
                             ))}
                           </div>
                         ) : (
-                          <p className="no-slots-message">No available time slots for this day</p>
+                          <p className="no-slots-message">
+                            No available time slots for this day
+                          </p>
                         )}
                       </div>
 
@@ -272,9 +329,9 @@ const PatientPanel = () => {
                         <button
                           className="cancel-button"
                           onClick={() => {
-                            setIsBookingAppointment(false)
-                            setSelectedDay(null)
-                            setAvailableTimes([])
+                            setIsBookingAppointment(false);
+                            setSelectedDay(null);
+                            setAvailableTimes([]);
                           }}
                         >
                           Cancel
@@ -282,7 +339,11 @@ const PatientPanel = () => {
                         <button
                           className="primary-button"
                           onClick={handleBookAppointment}
-                          disabled={!newAppointment.date || !newAppointment.time || !newAppointment.reason}
+                          disabled={
+                            !newAppointment.date ||
+                            !newAppointment.time ||
+                            !newAppointment.reason
+                          }
                         >
                           Book Appointment
                         </button>
@@ -301,10 +362,15 @@ const PatientPanel = () => {
               {getPastAppointments().length > 0 ? (
                 <div className="appointments-list">
                   {getPastAppointments().map((appointment) => (
-                    <div className="appointment-card past" key={appointment.appointment_id}>
+                    <div
+                      className="appointment-card past"
+                      key={appointment.appointment_id}
+                    >
                       <div className="appointment-header">
                         <h4>{appointment.doctor_name}</h4>
-                        <span className="appointment-date">{appointment.date}</span>
+                        <span className="appointment-date">
+                          {appointment.date}
+                        </span>
                       </div>
                       <div className="appointment-details">
                         <p>
@@ -316,7 +382,9 @@ const PatientPanel = () => {
                       </div>
                       <div className="appointment-actions">
                         <button className="action-button">View Details</button>
-                        <button className="action-button secondary">Book Follow-up</button>
+                        <button className="action-button secondary">
+                          Book Follow-up
+                        </button>
                       </div>
                     </div>
                   ))}
@@ -329,7 +397,7 @@ const PatientPanel = () => {
         </main>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PatientPanel
+export default PatientPanel;
