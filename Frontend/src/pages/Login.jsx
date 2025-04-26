@@ -1,36 +1,56 @@
-"use client"
-
-import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { NavBar } from "../components/NavBar"
-import { Footer } from "../components/Footer"
-import "../styles/Login.css"
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { NavBar } from "../components/NavBar";
+import { Footer } from "../components/Footer";
+import { checkAuth } from "../utilities/CheckAuth";
+import "../styles/Registration.css";
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    userType: "patient",
-  })
-  const navigate = useNavigate()
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      async function verifyUser() {
+        const auth = await checkAuth();
+        if (auth.authenticated) {
+          navigate(`/${auth.role}-panel`);
+          alert("You are already logged in as " + auth.role);
+        }
+      }
+      verifyUser();
+    }, []);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    // For preview purposes, navigate to the appropriate panel based on user type
-    if (formData.userType === "doctor") {
-      navigate("/doctor-panel")
-    } else {
-      navigate("/patient-panel")
-    }
-  }
+    e.preventDefault();
+    alert("Login button clicked");
+
+    fetch(
+      "http://localhost/doctor-appointments/backend/routes/auth/login.php",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          email: email,
+          password: password
+        })
+      }
+    ).then(response => response.json()).then(data => {
+      if (data.message) {
+        alert(data.message);
+        navigate("/patient-panel");
+      }
+      if (data.error) {
+        alert(data.error);
+      }
+    });
+  };
 
   return (
     <>
@@ -50,8 +70,8 @@ const Login = () => {
                 id="email"
                 name="email"
                 placeholder="Enter your email"
-                value={formData.email}
-                onChange={handleChange}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -63,36 +83,10 @@ const Login = () => {
                 id="password"
                 name="password"
                 placeholder="Enter your password"
-                value={formData.password}
-                onChange={handleChange}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
-            </div>
-
-            <div className="form-group">
-              <label>I am a:</label>
-              <div className="radio-group">
-                <label className="radio-label">
-                  <input
-                    type="radio"
-                    name="userType"
-                    value="patient"
-                    checked={formData.userType === "patient"}
-                    onChange={handleChange}
-                  />
-                  <span>Patient</span>
-                </label>
-                <label className="radio-label">
-                  <input
-                    type="radio"
-                    name="userType"
-                    value="doctor"
-                    checked={formData.userType === "doctor"}
-                    onChange={handleChange}
-                  />
-                  <span>Doctor</span>
-                </label>
-              </div>
             </div>
 
             <div className="form-group forgot-password">
@@ -113,7 +107,7 @@ const Login = () => {
       </div>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

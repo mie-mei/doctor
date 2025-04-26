@@ -1,39 +1,68 @@
-"use client"
-
-import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { NavBar } from "../components/NavBar"
-import { Footer } from "../components/Footer"
-import "../styles/Login.css" // Reusing the same styles
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { NavBar } from "../components/NavBar";
+import { Footer } from "../components/Footer";
+import { checkAuth } from "../utilities/CheckAuth";
+import "../styles/Registration.css";
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    userType: "patient",
-  })
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
+  useEffect(() => {
+    async function verifyUser() {
+      const auth = await checkAuth();
+      if (auth.authenticated) {
+        navigate(`/${auth.role}-panel`);
+        alert("You are already logged in as " + auth.role);
+      }
+    }
+    verifyUser();
+  }, []);
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [userType, setUserType] = useState("patient");
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    // For preview purposes, navigate to the appropriate panel based on user type
-    if (formData.userType === "doctor") {
-      navigate("/doctor-panel")
-    } else {
-      navigate("/patient-panel")
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
     }
-  }
+
+    const fullName = firstName + " " + lastName;
+
+    fetch(
+      "http://localhost/doctor-appointments/backend/routes/auth/register.php",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          name: fullName,
+          email: email,
+          password: password,
+          userType: userType,
+        }),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message) {
+          alert(data.message);
+          navigate("/login");
+        }
+        if (data.error) {
+          alert(data.error);
+        }
+      });
+  };
 
   return (
     <>
@@ -54,8 +83,8 @@ const Register = () => {
                   id="firstName"
                   name="firstName"
                   placeholder="Enter your first name"
-                  value={formData.firstName}
-                  onChange={handleChange}
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   required
                 />
               </div>
@@ -66,8 +95,8 @@ const Register = () => {
                   id="lastName"
                   name="lastName"
                   placeholder="Enter your last name"
-                  value={formData.lastName}
-                  onChange={handleChange}
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   required
                 />
               </div>
@@ -80,8 +109,8 @@ const Register = () => {
                 id="email"
                 name="email"
                 placeholder="Enter your email"
-                value={formData.email}
-                onChange={handleChange}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -93,8 +122,8 @@ const Register = () => {
                 id="password"
                 name="password"
                 placeholder="Enter your password"
-                value={formData.password}
-                onChange={handleChange}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
@@ -106,8 +135,8 @@ const Register = () => {
                 id="confirmPassword"
                 name="confirmPassword"
                 placeholder="Confirm your password"
-                value={formData.confirmPassword}
-                onChange={handleChange}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
             </div>
@@ -120,8 +149,8 @@ const Register = () => {
                     type="radio"
                     name="userType"
                     value="patient"
-                    checked={formData.userType === "patient"}
-                    onChange={handleChange}
+                    checked={userType === "patient"}
+                    onChange={(e) => setUserType(e.target.value)}
                   />
                   <span>Patient</span>
                 </label>
@@ -130,8 +159,8 @@ const Register = () => {
                     type="radio"
                     name="userType"
                     value="doctor"
-                    checked={formData.userType === "doctor"}
-                    onChange={handleChange}
+                    checked={userType === "doctor"}
+                    onChange={(e) => setUserType(e.target.value)}
                   />
                   <span>Doctor</span>
                 </label>
@@ -152,7 +181,7 @@ const Register = () => {
       </div>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
