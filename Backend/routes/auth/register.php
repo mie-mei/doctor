@@ -1,25 +1,23 @@
 <?php
 session_start();
-require_once '../../config/database.php';
+require_once '../../controllers/auth/RegisterController.php';
 
+// Allow requests from the frontend
+header('Access-Control-Allow-Origin: http://localhost:5173');
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Headers: Content-Type');
 header('Content-Type: application/json');
 
+// Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get the user data
     $input = json_decode(file_get_contents('php://input'), true);
     $name = $input['name'] ?? '';
     $email = $input['email'] ?? '';
     $password = $input['password'] ?? '';
     $role = $input['role'] ?? 'patient';
-
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    try {
-        $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$name, $email, $hashedPassword, $role]);
-        $_SESSION['user_id'] = $pdo->lastInsertId();
-        $_SESSION['role'] = $role;
-        echo json_encode(["message" => "Registration successful", "role" => $role]);
-    } catch (PDOException $e) {
-        echo json_encode(["error" => "Email already exists"]);
-    }
+    $result = RegisterController::register($name, $email, $hashedPassword, $role);
+    echo json_encode($result);
 }
