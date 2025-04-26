@@ -15,7 +15,7 @@ class Appointment {
         ");
         return $stmt->fetchAll();
     }
-    public static function getById($id) {
+    public static function getByUserId($user_id) {
         global $pdo;
         $stmt = $pdo->prepare("
             SELECT 
@@ -25,10 +25,10 @@ class Appointment {
                 users.name AS patient_name
             FROM appointments
             JOIN users ON appointments.user_id = users.user_id
-            WHERE appointments.appointment_id = :id
+            WHERE appointments.user_id = :user_id
         ");
-        $stmt->execute(['id' => $id]);
-        return $stmt->fetch();
+        $stmt->execute(['user_id' => $user_id]);
+        return $stmt->fetchAll();
     }
     public static function create($data) {
         global $pdo;

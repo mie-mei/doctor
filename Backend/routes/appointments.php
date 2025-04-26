@@ -3,9 +3,9 @@
     header('Content-Type: application/json');
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $result = AppointmentController::getAppointmentById($id);
+        if (isset($_GET['user_id'])) {
+            $user_id = $_GET['user_id'];
+            $result = AppointmentController::getAppointmentsByUserId($user_id);
             echo json_encode($result);
         } else {
             $result = AppointmentController::getAllAppointments();
