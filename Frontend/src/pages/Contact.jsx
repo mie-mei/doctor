@@ -12,7 +12,7 @@ export const Contact = () => (
       <div className="contact-header">
         <img
           src="../src/assets/clinic.png"
-          alt="Hospital Building"
+          alt="Clinic Building"
           className="contact-header-image"
         />
       </div>
@@ -35,7 +35,7 @@ export const Contact = () => (
             <ContactInfoCard
               icon="✉️"
               title="Email Us"
-              details={["drmohammed@gmail.com"]}
+              details={["dr.mohammed@gmail.com"]}
             />
             <ContactInfoCard
               icon="📞"

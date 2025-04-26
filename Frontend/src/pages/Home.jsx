@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/Home.css";
 import { NavBar } from "../components/NavBar.jsx";
 import { Footer } from "../components/Footer.jsx";
@@ -7,6 +8,7 @@ import { ServiceCard } from "../components/ServiceCard";
 import { TestimonialCard } from "../components/TestimonialCard";
 
 function Home() {
+  const navigate = useNavigate();
   return (
     <>
       <div className="hero-section">
@@ -24,7 +26,7 @@ function Home() {
             approach make us a leader in the healthcare industry.
           </p>
         </div>
-        <button>Book An Appointment →</button>
+        <button onClick={() => navigate("/register")}>Book An Appointment →</button>
       </div>
 
       <div id="services-section" className="services-section">
