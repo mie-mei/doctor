@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $input['name'] ?? '';
     $email = $input['email'] ?? '';
     $password = $input['password'] ?? '';
-    $role = $input['role'] ?? 'patient';
+    $role = 'patient';
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     $result = RegisterController::register($name, $email, $hashedPassword, $role);
