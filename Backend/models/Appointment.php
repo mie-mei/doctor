@@ -33,8 +33,8 @@ class Appointment {
     public static function create($data) {
         global $pdo;
         $stmt = $pdo->prepare("
-            INSERT INTO appointments (user_id, date, reason) 
-            VALUES (:user_id, :date, :reason)
+            INSERT INTO appointments (user_id, date, reason, created_at) 
+            VALUES (:user_id, :date, :reason, :created_at)
         ");
         return $stmt->execute($data);
     }
