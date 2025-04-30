@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/Home.css";
+import "../styles/pages/Home.css";
 import { NavBar } from "../components/NavBar.jsx";
 import { Footer } from "../components/Footer.jsx";
 
@@ -41,37 +41,31 @@ function Home() {
             image="../src/assets/Services/Cardiology.jpg"
             title="Cardiology"
             description="Comprehensive heart care services."
-            link="#"
           />
           <ServiceCard
             image="../src/assets/Services/Neurology.jpg"
             title="Neurology"
             description="Advanced neurological treatments."
-            link="#"
           />
           <ServiceCard
             image="../src/assets/Services/Orthopedics.jpg"
             title="Orthopedics"
             description="Expert care for bones and joints."
-            link="#"
           />
           <ServiceCard
             image="../src/assets/Services/Pediatrics.jpg"
             title="Pediatrics"
             description="Comprehensive care for children."
-            link="#"
           />
           <ServiceCard
             image="../src/assets/Services/Dermatology.jpg"
             title="Dermatology"
             description="Skin care and treatments."
-            link="#"
           />
           <ServiceCard
             image="../src/assets/Services/Radiology.jpg"
             title="Radiology"
             description="State-of-the-art imaging services."
-            link="#"
           />
         </div>
       </div>

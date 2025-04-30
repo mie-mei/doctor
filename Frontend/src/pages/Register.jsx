@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { NavBar } from "../components/NavBar";
 import { Footer } from "../components/Footer";
 import { checkAuth } from "../utilities/CheckAuth";
-import "../styles/Registration.css";
+import "../styles/pages/Registration.css";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -13,24 +14,23 @@ const Register = () => {
       const auth = await checkAuth();
       if (auth.authenticated) {
         navigate(`/${auth.role}-panel`);
-        alert("You are already logged in as " + auth.role);
+        toast.error("You are already logged in as " + auth.role);
       }
     }
     verifyUser();
-  }, []);
+  }, [navigate]);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [userType, setUserType] = useState("patient");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("Passwords do not match");
+      toast.error("Passwords do not match");
       return;
     }
 
@@ -48,18 +48,17 @@ const Register = () => {
           name: fullName,
           email: email,
           password: password,
-          userType: userType,
         }),
       }
     )
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {
-          alert(data.message);
+          toast.success(data.message);
           navigate("/login");
         }
         if (data.error) {
-          alert(data.error);
+          toast.error(data.error);
         }
       });
   };
@@ -139,32 +138,6 @@ const Register = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
-            </div>
-
-            <div className="form-group">
-              <label>I am a:</label>
-              <div className="radio-group">
-                <label className="radio-label">
-                  <input
-                    type="radio"
-                    name="userType"
-                    value="patient"
-                    checked={userType === "patient"}
-                    onChange={(e) => setUserType(e.target.value)}
-                  />
-                  <span>Patient</span>
-                </label>
-                <label className="radio-label">
-                  <input
-                    type="radio"
-                    name="userType"
-                    value="doctor"
-                    checked={userType === "doctor"}
-                    onChange={(e) => setUserType(e.target.value)}
-                  />
-                  <span>Doctor</span>
-                </label>
-              </div>
             </div>
 
             <button type="submit" className="auth-button">

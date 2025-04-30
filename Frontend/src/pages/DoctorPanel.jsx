@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Logo } from "../components/Logo";
 import { LogoutButton } from "../components/LogoutButton";
 import { checkAuth } from "../utilities/CheckAuth";
-import "../styles/DoctorPanel.css";
+import "../styles/pages/DoctorPanel.css";
+import toast from "react-hot-toast";
 
 
 const DoctorPanel = () => {
@@ -15,15 +16,15 @@ const DoctorPanel = () => {
 
       if (!auth.authenticated) {
         navigate("/login");
-        alert("You must log in first!");
+        toast.error("You must log in first!");
       } else if (auth.role !== "doctor") {
         navigate("/patient-panel");
-        alert("You are not authorized to access this page!");
+        toast.success("You are not authorized to access this page!");
       }
     }
 
     verifyUser();
-  }, []);
+  }, [navigate]);
 
 
   const [activeTab, setActiveTab] = useState("appointments");

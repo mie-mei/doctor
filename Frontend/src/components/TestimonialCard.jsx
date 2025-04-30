@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/TestimonialCard.css";
+import "../styles/components/TestimonialCard.css";
 
 export const TestimonialCard = ({ image, name, title, description, role }) => (
   <div className="testimonial-card">

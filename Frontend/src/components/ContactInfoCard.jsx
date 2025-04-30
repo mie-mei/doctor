@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/ContactInfoCard.css";
+import "../styles/components/ContactInfoCard.css";
 
 export const ContactInfoCard = ({ icon, title, details }) => (
   <div className="contact-info-card">

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import "../styles/Logo.css";
+import "../styles/components/Logo.css";
 
 export const Logo = () => {
   const navigate = useNavigate();

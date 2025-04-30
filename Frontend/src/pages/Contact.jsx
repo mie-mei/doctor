@@ -1,7 +1,7 @@
 import { NavBar } from "../components/NavBar";
 import { Footer } from "../components/Footer";
 import { ContactInfoCard } from "../components/ContactInfoCard";
-import "../styles/Contact.css";
+import "../styles/pages/Contact.css";
 
 export const Contact = () => (
   <>

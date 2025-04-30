@@ -1,13 +1,14 @@
 import React from "react";
-import "../styles/ServiceCard.css";
+import { Link } from "react-router-dom";
+import "../styles/components/ServiceCard.css";
 
-export const ServiceCard = ({ image, title, description, link }) => (
+export const ServiceCard = ({ image, title, description }) => (
   <div className="service-card">
     <img src={image} alt={title} className="service-card-image" />
     <h3 className="service-card-title">{title}</h3>
     <p className="service-card-description">{description}</p>
-    <a href={link} className="service-card-link">
+    <Link to="/register" className="service-card-link">
       Learn more →
-    </a>
+    </Link>
   </div>
 );

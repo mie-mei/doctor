@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 import { NavBar } from "../components/NavBar";
 import { Footer } from "../components/Footer";
 import { checkAuth } from "../utilities/CheckAuth";
-import "../styles/Registration.css";
+import "../styles/pages/Registration.css";
 
 const Login = () => {
 
@@ -14,11 +15,11 @@ const Login = () => {
         const auth = await checkAuth();
         if (auth.authenticated) {
           navigate(`/${auth.role}-panel`);
-          alert("You are already logged in as " + auth.role);
+          toast.error("You are already logged in as " + auth.role);
         }
       }
       verifyUser();
-    }, []);
+    }, [navigate]);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +27,6 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Login button clicked");
 
     fetch(
       "http://localhost/doctor-appointments/backend/routes/auth/login.php",
@@ -43,11 +43,11 @@ const Login = () => {
       }
     ).then(response => response.json()).then(data => {
       if (data.message) {
-        alert(data.message);
+        toast.success(data.message);
         navigate("/patient-panel");
       }
       if (data.error) {
-        alert(data.error);
+        toast.error(data.error);
       }
     });
   };

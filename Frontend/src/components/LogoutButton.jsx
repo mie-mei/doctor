@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 export const LogoutButton = () => {
   const navigate = useNavigate();
@@ -16,15 +17,11 @@ export const LogoutButton = () => {
       .then((data) => {
         if (data.message) {
           navigate("/");
-          alert(data.message);
+          toast.success(data.message);
         } else {
-          alert("Logout failed. Please try again.");
+          toast.error("Logout failed. Please try again.");
         }
       })
-      .catch((error) => {
-        console.error("Error during logout:", error);
-        alert("An error occurred. Please try again.");
-      });
   };
 
   return (
