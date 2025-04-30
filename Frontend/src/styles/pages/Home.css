@@ -133,13 +133,6 @@ button:hover {
   margin-bottom: 10px;
 }
 
-.testimonials-section p {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin: 0 auto 30px;
-  color: var(--text-color-description);
-  max-width: 800px;
-}
 
 .testimonials-section_cards {
   padding: 20px; /* Add padding for spacing */

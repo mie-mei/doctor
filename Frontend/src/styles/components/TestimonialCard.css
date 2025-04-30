@@ -43,4 +43,5 @@
 .testimonial-card-role {
   font-size: 0.9rem;
   color: var(--text-color-description);
+  margin-top: 0;
 }
