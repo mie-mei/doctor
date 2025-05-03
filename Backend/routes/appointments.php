@@ -29,6 +29,7 @@
         $data = [
             'user_id' => $input['user_id'],
             'date' => $input['date'],
+            'time' => $input['time'],
             'reason' => $input['reason'],
             'created_at' => date('Y-m-d H:i:s'),
         ];

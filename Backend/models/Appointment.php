@@ -7,11 +7,14 @@ class Appointment {
         $stmt = $pdo->query("
             SELECT 
                 appointments.appointment_id, 
-                appointments.date, 
+                appointments.date,
+                appointments.time,
                 appointments.reason, 
+                appointments.status,
                 users.name AS patient_name
             FROM appointments
             JOIN users ON appointments.user_id = users.user_id
+            WHERE appointments.status = 'Pending'
         ");
         return $stmt->fetchAll();
     }
@@ -21,6 +24,7 @@ class Appointment {
             SELECT 
                 appointments.appointment_id, 
                 appointments.date, 
+                appointments.time,
                 appointments.reason, 
                 users.name AS patient_name
             FROM appointments
@@ -33,8 +37,8 @@ class Appointment {
     public static function create($data) {
         global $pdo;
         $stmt = $pdo->prepare("
-            INSERT INTO appointments (user_id, date, reason, created_at) 
-            VALUES (:user_id, :date, :reason, :created_at)
+            INSERT INTO appointments (user_id, date, time, reason, created_at) 
+            VALUES (:user_id, :date, :time, :reason, :created_at)
         ");
         return $stmt->execute($data);
     }
