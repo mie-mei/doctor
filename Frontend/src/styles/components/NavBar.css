@@ -1,6 +1,5 @@
 .navbar {
     width: 700px; /* Make it span the full width of the page */
-    background-color: var(--background-color);
     padding-bottom: 80px;
     display: flex;
     justify-content: space-between; /* Space out the links */

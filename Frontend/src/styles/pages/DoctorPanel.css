@@ -48,8 +48,8 @@
 .panel-sidebar {
   width: 250px;
   background-color: white;
-  padding: 30px 0;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  border-right: 1px solid #e0e0e0;
 }
 
 .panel-nav {
@@ -249,15 +249,6 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-}
-
-.cancel-button {
-  background-color: #f5f5f5;
-  color: #555;
-}
-
-.cancel-button:hover {
-  background-color: #e0e0e0;
 }
 
 .save-button {
