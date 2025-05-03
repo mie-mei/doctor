@@ -9,4 +9,14 @@ class User {
         $stmt->execute([$email]);
         return $stmt->fetch();
     }
+
+    public static function getAllPatients() {
+        global $pdo;
+        $stmt = $pdo->query("
+            SELECT user_id, name, email 
+            FROM users 
+            WHERE role = 'patient'
+        ");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
