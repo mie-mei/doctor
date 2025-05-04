@@ -10,6 +10,7 @@ if (isset($_SESSION['user_id'])) {
     echo json_encode([
         "authenticated" => true,
         "user_id" => $_SESSION['user_id'],
+        "name" => $_SESSION['name'],
         "role" => $_SESSION['role']
     ]);
 } else {

@@ -14,4 +14,10 @@ class AppointmentController {
     public static function getAppointmentsByUserId($user_id) {
         return Appointment::getByUserId($user_id);
     }
+    public static function updateAppointment($appointment_id, $data) {
+        return Appointment::update($appointment_id, $data);
+    }
+    public static function getAppointmentById($id) {
+        return Appointment::getById($id);
+    }
 }

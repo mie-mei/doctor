@@ -17,29 +17,48 @@
   color: #555;
 }
 
-.cancel-button {
-  background-color: #e53935;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
 .cancel-button:hover {
   background-color: #c62828;
 }
 
-.done-button {
-  background-color: #28a745;
-  color: white;
+.appointment-card .cancel-button,
+.appointment-card .done-button,
+.appointment-card .edit-button {
+  color: #fff;
   border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
+  margin-right: 5px;
 }
 
-.done-button:hover {
+.appointment-card .cancel-button {
+  background-color: #e53935;
+}
+
+.appointment-card .cancel-button:hover {
+  background-color: #c62828;
+}
+
+.appointment-card .done-button {
+  background-color: #28a745;
+}
+
+.appointment-card .done-button:hover {
   background-color: #218838;
+}
+.appointment-card .edit-button {
+  padding: 10px 15px;
+  background-color: #007e85;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.appointment-card .edit-button:hover {
+  background-color: #005e63;
 }

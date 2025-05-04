@@ -1,10 +1,9 @@
-import React from "react";
 import { toast } from "react-hot-toast";
 import "../styles/components/AppointmentCard.css";
+import { useNavigate } from "react-router-dom";
 
-export const AppointmentCard = ({ appointment }) => {
-  // Debugging: Log the appointment object
-  console.log("Appointment object:", appointment);
+export const AppointmentCard = ({ appointment, panelType }) => {
+  const navigate = useNavigate();
 
   const handleCancel = () => {
     if (!appointment || !appointment.appointment_id) {
@@ -34,6 +33,10 @@ export const AppointmentCard = ({ appointment }) => {
       });
   };
 
+  const handleEdit = () => {
+    navigate(`/edit-appointment/${appointment.appointment_id}`);
+  };
+
   const handleDone = () => {
     if (!appointment || !appointment.appointment_id) {
       toast.error("Invalid appointment data.");
@@ -47,15 +50,19 @@ export const AppointmentCard = ({ appointment }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ status: "Done" }),
+        body: JSON.stringify({
+          status: "Done",
+          date: appointment.date,
+          time: appointment.time,
+          reason: appointment.reason,
+        }),
       }
     )
       .then((response) => response.json())
       .then((data) => {
-        if (data === true) {
-          console.log("appointment id", appointment.appointment_id);
+        if (data.success) {
           toast.success("Appointment marked as done successfully.");
-          window.location.reload(); // Refresh the page
+          window.location.reload();
         } else {
           toast.error("Failed to mark the appointment as done.");
         }
@@ -68,7 +75,9 @@ export const AppointmentCard = ({ appointment }) => {
 
   return (
     <div className="appointment-card">
-      <h3>{appointment?.patient_name}</h3>
+      <h3>
+        {panelType === "doctor" ? appointment?.patient_name : "Dr. Mohammed"}
+      </h3>
       <p>
         <strong>Date:</strong> {appointment?.date}
       </p>
@@ -79,9 +88,17 @@ export const AppointmentCard = ({ appointment }) => {
         <strong>Reason:</strong> {appointment?.reason}
       </p>
 
-      <button className="done-button" onClick={handleDone}>
-        Mark as Done
-      </button>
+      {panelType === "doctor" ? (
+        <button className="done-button" onClick={handleDone}>
+          Mark as Done
+        </button>
+      ) : (
+        <>
+          <button className="edit-button" onClick={handleEdit}>
+            Edit
+          </button>
+        </>
+      )}
 
       <button className="cancel-button" onClick={handleCancel}>
         Cancel

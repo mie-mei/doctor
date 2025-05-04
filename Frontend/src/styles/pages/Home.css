@@ -112,19 +112,16 @@ button:hover {
 
 .services-section_cards {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(300px, 1fr)
-  ); /* Responsive grid */
-  gap: 20px; /* Space between cards */
-  justify-content: center; /* Center the grid items */
-  align-items: stretch; /* Stretch the cards to fill the available space */
-  width: 100%; /* Ensure the grid spans the full width of the container */
-  margin: 0 auto; /* Center the grid within the parent container */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .testimonials-section {
-    padding: 40px 80px;
+  padding: 40px 80px;
 }
 .testimonials-section h1 {
   font-size: 2rem;
@@ -132,7 +129,6 @@ button:hover {
   color: var(--primary-color);
   margin-bottom: 10px;
 }
-
 
 .testimonials-section_cards {
   padding: 20px; /* Add padding for spacing */

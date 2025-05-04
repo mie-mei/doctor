@@ -18,6 +18,7 @@ class RegisterController {
         if ($stmt->execute([$name, $email, $hashedPassword, $role])) {
             $_SESSION['user_id'] = $pdo->lastInsertId();
             $_SESSION['role'] = $role;
+            $_SESSION['name'] = $name;
             return ["message" => "Registration successful"];
         } else {
             return ["error" => "Registration failed"];

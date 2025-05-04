@@ -1,12 +1,13 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { Toaster } from "react-hot-toast"
-import Home from "./pages/Home.jsx"
-import { Contact } from "./pages/Contact.jsx"
-import Login from "./pages/Login.jsx"
-import Register from "./pages/Register.jsx"
-import DoctorPanel from "./pages/DoctorPanel.jsx"
-import PatientPanel from "./pages/PatientPanel.jsx"
-import "./App.css"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import Home from "./pages/Home.jsx";
+import { Contact } from "./pages/Contact.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import DoctorPanel from "./pages/DoctorPanel.jsx";
+import PatientPanel from "./pages/PatientPanel.jsx";
+import EditAppointment from "./pages/EditAppointment.jsx";
+import "./App.css";
 
 function App() {
   return (
@@ -19,9 +20,10 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/doctor-panel" element={<DoctorPanel />} />
         <Route path="/patient-panel" element={<PatientPanel />} />
+        <Route path="/edit-appointment/:id" element={<EditAppointment />} />
       </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

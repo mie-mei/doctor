@@ -94,6 +94,7 @@ const DoctorPanel = () => {
                     <AppointmentCard
                       key={appointment.appointment_id}
                       appointment={appointment}
+                      panelType="doctor"
                     />
                   ))
                 ) : (
@@ -109,7 +110,7 @@ const DoctorPanel = () => {
               <div className="availability-list">
                 {availability.length > 0 ? (
                   availability.map((item, index) => (
-                    <div key={index}>
+                    <div className="availability-basic-item" key={index}>
                       {item.week_day}: {item.start_time} - {item.end_time}
                     </div>
                   ))

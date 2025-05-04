@@ -1,19 +1,19 @@
 .navbar {
-    width: 700px; /* Make it span the full width of the page */
-    padding-bottom: 80px;
-    display: flex;
-    justify-content: space-between; /* Space out the links */
-    align-items: center; /* Center the items vertically */
-    z-index: 1000; /* Ensure it stays above other elements */
-    font-family: Lexend Exa, sans-serif; /* Use Lexend Tera font */
+  width: 700px; /* Make it span the full width of the page */
+  padding-bottom: 80px;
+  display: flex;
+  justify-content: space-between; /* Space out the links */
+  align-items: center; /* Center the items vertically */
+  z-index: 1000; /* Ensure it stays above other elements */
+  font-family: Lexend Exa, sans-serif; /* Use Lexend Tera font */
 }
 
 .navbar a {
-    text-decoration: none; /* Remove underline from links */
-    color: #333; /* Set link color */
-    font-weight: 500; /* Medium weight for links */
-    transition: color 0.3s ease; /* Smooth transition for hover effect */
+  text-decoration: none; /* Remove underline from links */
+  color: var(--text-color-heading); /* Set link color */
+  font-weight: 500; /* Medium weight for links */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
 }
 .navbar a:hover {
-    color: #007E85; /* Change color on hover */
+  color: var(--primary-color); /* Change color on hover */
 }

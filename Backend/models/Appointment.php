@@ -50,4 +50,37 @@ class Appointment {
         ");
         return $stmt->execute(['id' => $id]);
     }
+    public static function update($appointment_id, $data) {
+        global $pdo;
+        $stmt = $pdo->prepare("
+            UPDATE appointments
+            SET date = :date, time = :time, reason = :reason, status = :status
+            WHERE appointment_id = :appointment_id
+        ");
+        return $stmt->execute([
+            'date' => $data['date'],
+            'time' => $data['time'],
+            'reason' => $data['reason'],
+            'status' => $data['status'],
+            'appointment_id' => $appointment_id
+        ]);
+    }
+    public static function getById($id) {
+        global $pdo;
+        $stmt = $pdo->prepare("
+            SELECT 
+                appointments.appointment_id, 
+                appointments.date,
+                appointments.time,
+                appointments.reason, 
+                appointments.status,
+                appointments.user_id,
+                users.name AS patient_name
+            FROM appointments
+            JOIN users ON appointments.user_id = users.user_id
+            WHERE appointments.appointment_id = :id
+        ");
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch();
+    }
 }

@@ -8,6 +8,7 @@ class LoginController {
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['role'] = $user['role'];
+            $_SESSION['name'] = $user['name'];
 
             return [
                 "message" => "Login successful",

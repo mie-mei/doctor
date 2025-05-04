@@ -7,23 +7,20 @@ import { checkAuth } from "../utilities/CheckAuth";
 import "../styles/pages/Registration.css";
 
 const Login = () => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
-  
-    useEffect(() => {
-      async function verifyUser() {
-        const auth = await checkAuth();
-        if (auth.authenticated) {
-          navigate(`/${auth.role}-panel`);
-          toast.error("You are already logged in as " + auth.role);
-        }
+  useEffect(() => {
+    async function verifyUser() {
+      const auth = await checkAuth();
+      if (auth.authenticated) {
+        navigate(`/${auth.role}-panel`);
       }
-      verifyUser();
-    }, [navigate]);
+    }
+    verifyUser();
+  }, [navigate]);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,22 +35,24 @@ const Login = () => {
         credentials: "include",
         body: JSON.stringify({
           email: email,
-          password: password
-        })
+          password: password,
+        }),
       }
-    ).then(response => response.json()).then(data => {
-      if (data.message) {
-        toast.success(data.message);
-        navigate("/patient-panel");
-      }
-      if (data.error) {
-        toast.error(data.error);
-      }
-    });
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message) {
+          toast.success(data.message);
+          navigate("/patient-panel");
+        }
+        if (data.error) {
+          toast.error(data.error);
+        }
+      });
   };
 
   return (
-    <>
+    <div className="registration-page">
       <NavBar />
       <div className="auth-container">
         <div className="auth-card">
@@ -89,10 +88,6 @@ const Login = () => {
               />
             </div>
 
-            <div className="form-group forgot-password">
-              <Link to="/forgot-password">Forgot Password?</Link>
-            </div>
-
             <button type="submit" className="auth-button">
               Sign In
             </button>
@@ -106,7 +101,7 @@ const Login = () => {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
