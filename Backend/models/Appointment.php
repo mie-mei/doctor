@@ -15,6 +15,7 @@ class Appointment {
             FROM appointments
             JOIN users ON appointments.user_id = users.user_id
             WHERE appointments.status = 'Pending'
+            ORDER BY appointments.date ASC, appointments.time ASC
         ");
         return $stmt->fetchAll();
     }
@@ -30,6 +31,7 @@ class Appointment {
             FROM appointments
             JOIN users ON appointments.user_id = users.user_id
             WHERE appointments.user_id = :user_id
+            ORDER BY appointments.date ASC, appointments.time ASC
         ");
         $stmt->execute(['user_id' => $user_id]);
         return $stmt->fetchAll();
