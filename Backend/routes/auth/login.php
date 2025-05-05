@@ -14,6 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $input['email'] ?? '';
     $password = $input['password'] ?? '';
 
+    if (empty($email) || empty($password)) {
+        echo json_encode(["error" => "Email and password are required"]);
+        exit;
+    }
+
     $result = LoginController::login($email, $password);
     echo json_encode($result);
 }
