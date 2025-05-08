@@ -1,1 +1,39 @@
-Backend/config/email.php 
+# Ignore sensitive configuration files
+Backend/config/email.php
+Backend/config/.env
+
+# Ignore vendor folder (dependencies installed via Composer)
+vendor/
+
+# Ignore node_modules folder (dependencies installed via npm/yarn)
+node_modules/
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+*.bak
+
+# Ignore log files
+*.log
+
+# Ignore cache files
+cache/
+tmp/
+
+# Ignore compiled files
+*.class
+*.pyc
+*.pyo
+*.exe
+*.dll
+*.so
+*.o
+*.obj
+
+# Ignore environment files
+.env.*
+.env

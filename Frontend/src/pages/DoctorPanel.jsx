@@ -88,7 +88,7 @@ const DoctorPanel = () => {
           {activeTab === "appointments" && (
             <div className="appointments-section">
               <h2>Upcoming Appointments</h2>
-              <div className="appointments-list">
+              <div className={`appointments-list ${ appointments.length === 0 ? 'empty' : ''}`}>
                 {appointments.length > 0 ? (
                   appointments.map((appointment) => (
                     <AppointmentCard
