@@ -11,7 +11,7 @@ export const Logo = () => {
       onClick={() => navigate("/")} // Use navigate to redirect to the home page
       style={{ cursor: "pointer" }}
     >
-      <img src="../src/assets/logo.svg" alt="Logo" />
+      <img src="/logo.svg" alt="Logo" />
       <span>Dr.</span> Mohammed
     </div>
   );

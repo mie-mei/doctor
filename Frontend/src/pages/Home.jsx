@@ -41,32 +41,32 @@ function Home() {
         </p>
         <div className="services-section_cards">
           <ServiceCard
-            image="../src/assets/Services/Cardiology.jpg"
+            image="/Services/Cardiology.jpg"
             title="Cardiology"
             description="Expert heart care and cardiovascular health management with Dr. Mohammed."
           />
           <ServiceCard
-            image="../src/assets/Services/Neurology.jpg"
+            image="/Services/Neurology.jpg"
             title="Neurology"
             description="Specialized neurological care and treatment for nervous system disorders."
           />
           <ServiceCard
-            image="../src/assets/Services/Orthopedics.jpg"
+            image="/Services/Orthopedics.jpg"
             title="Orthopedics"
             description="Comprehensive care for bone and joint conditions, from diagnosis to treatment."
           />
           <ServiceCard
-            image="../src/assets/Services/Pediatrics.jpg"
+            image="/Services/Pediatrics.jpg"
             title="Pediatrics"
             description="Gentle and expert care for children's health and development."
           />
           <ServiceCard
-            image="../src/assets/Services/Dermatology.jpg"
+            image="/Services/Dermatology.jpg"
             title="Dermatology"
             description="Professional skin care and treatment for various dermatological conditions."
           />
           <ServiceCard
-            image="../src/assets/Services/Radiology.jpg"
+            image="/Services/Radiology.jpg"
             title="Radiology"
             description="Advanced diagnostic imaging services for accurate medical assessment."
           />
@@ -82,21 +82,21 @@ function Home() {
         </p>
         <div className="testimonials-section_cards">
           <TestimonialCard
-            image="../src/assets/Testimonials/pfp-1.jpg"
+            image="/Testimonials/pfp-1.jpg"
             title="Amazing Service"
             description="The staff was incredibly helpful and professional. Highly recommend!"
             name="John Doe"
             role="CEO at TechCorp"
           />
           <TestimonialCard
-            image="../src/assets/Testimonials/pfp-2.jpeg"
+            image="/Testimonials/pfp-2.jpeg"
             title="Exceptional Care"
             description="I felt very comfortable and well taken care of during my visit."
             name="Jameela Mars"
             role="Manager at HealthPlus"
           />
           <TestimonialCard
-            image="../src/assets/Testimonials/pfp-3.jpg"
+            image="/Testimonials/pfp-3.jpg"
             title="Highly Recommended"
             description="The doctors and staff were very attentive and knowledgeable."
             name="Andy smith"

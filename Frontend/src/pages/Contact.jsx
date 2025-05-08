@@ -11,7 +11,7 @@ export const Contact = () => (
     <div className="contact-page">
       <div className="contact-header">
         <img
-          src="../src/assets/clinic.png"
+          src="/clinic.png"
           alt="Clinic Building"
           className="contact-header-image"
         />
