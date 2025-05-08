@@ -44,7 +44,7 @@ export const AppointmentCard = ({ appointment, panelType }) => {
     }
 
     fetch(
-      `http://localhost/doctor-appointments/backend/routes/appointments.php?id=${appointment.appointment_id}`,
+      `http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/appointments.php?id=${appointment.appointment_id}`,
       {
         method: "PUT",
         headers: {
@@ -69,7 +69,6 @@ export const AppointmentCard = ({ appointment, panelType }) => {
       })
       .catch((error) => {
         console.error("Error marking the appointment as done:", error);
-        toast.error("An error occurred while marking the appointment as done.");
       });
   };
 

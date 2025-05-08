@@ -10,11 +10,9 @@ const EditAppointment = () => {
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    console.log(id);
-
     // Fetch appointment details by ID
     fetch(
-      `http://localhost/doctor-appointments/backend/routes/appointments.php?id=${id}`,
+      `http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/appointments.php?id=${id}`,
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -22,8 +20,6 @@ const EditAppointment = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
         if (data && data.appointment_id) {
           setInitialData({
             weekDay: data.week_day || "Sunday",
@@ -39,7 +35,7 @@ const EditAppointment = () => {
 
   const handleEdit = ({ weekDay, selectedSlot, reason, date }) => {
     fetch(
-      `http://localhost/doctor-appointments/backend/routes/appointments.php?id=${id}`,
+      `http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/appointments.php?id=${id}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },

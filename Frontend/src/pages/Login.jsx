@@ -26,7 +26,7 @@ const Login = () => {
     e.preventDefault();
 
     fetch(
-      "http://localhost/doctor-appointments/backend/routes/auth/login.php",
+      "http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/auth/login.php",
       {
         method: "POST",
         headers: {
@@ -43,12 +43,13 @@ const Login = () => {
       .then((data) => {
         if (data.message) {
           toast.success(data.message);
-          navigate("/patient-panel");
+          navigate(`/${data.role}-panel`);
         }
         if (data.error) {
           toast.error(data.error);
         }
-      });
+      })
+      .catch(() => toast.error("Failed to log in."));
   };
 
   return (

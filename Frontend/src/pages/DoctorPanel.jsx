@@ -29,7 +29,7 @@ const DoctorPanel = () => {
   useEffect(() => {
     if (activeTab === "appointments") {
       fetch(
-        "http://localhost/doctor-appointments/backend/routes/appointments.php",
+        "http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/appointments.php",
         {
           method: "GET",
           credentials: "include",
@@ -40,7 +40,7 @@ const DoctorPanel = () => {
         .catch(() => toast.error("Failed to fetch appointments."));
     } else if (activeTab === "availability") {
       fetch(
-        "http://localhost/doctor-appointments/backend/routes/availability.php",
+        "http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/availability.php",
         {
           method: "GET",
           credentials: "include",
@@ -51,7 +51,7 @@ const DoctorPanel = () => {
         .catch(() => toast.error("Failed to fetch availability."));
     } else if (activeTab === "patients") {
       fetch(
-        "http://localhost/doctor-appointments/backend/routes/auth/users.php?role=patient"
+        "http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/auth/users.php?role=patient"
       )
         .then((res) => res.json())
         .then(setPatients)
@@ -88,7 +88,11 @@ const DoctorPanel = () => {
           {activeTab === "appointments" && (
             <div className="appointments-section">
               <h2>Upcoming Appointments</h2>
-              <div className={`appointments-list ${ appointments.length === 0 ? 'empty' : ''}`}>
+              <div
+                className={`appointments-list ${
+                  appointments.length === 0 ? "empty" : ""
+                }`}
+              >
                 {appointments.length > 0 ? (
                   appointments.map((appointment) => (
                     <AppointmentCard

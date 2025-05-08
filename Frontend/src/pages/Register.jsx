@@ -37,7 +37,7 @@ const Register = () => {
     const fullName = firstName + " " + lastName;
 
     fetch(
-      "http://localhost/doctor-appointments/backend/routes/auth/register.php",
+      "http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/auth/register.php",
       {
         method: "POST",
         headers: {
@@ -60,7 +60,8 @@ const Register = () => {
         if (data.error) {
           toast.error(data.error);
         }
-      });
+      })
+      .catch(() => toast.error("Failed to register."));
   };
 
   return (

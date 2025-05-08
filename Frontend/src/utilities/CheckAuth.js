@@ -1,6 +1,6 @@
 export async function checkAuth() {
   const response = await fetch(
-    "http://localhost/doctor-appointments/backend/routes/auth/checkAuth.php",
+    "http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/auth/checkAuth.php",
     {
       method: "GET",
       credentials: "include",
