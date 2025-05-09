@@ -2,7 +2,12 @@ import { toast } from "react-hot-toast";
 import "../styles/components/AppointmentCard.css";
 import { useNavigate } from "react-router-dom";
 
-export const AppointmentCard = ({ appointment, panelType }) => {
+export const AppointmentCard = ({
+  appointment,
+  panelType,
+  onAppointmentCanceled,
+  onAppointmentUpdated,
+}) => {
   const navigate = useNavigate();
 
   const handleCancel = () => {
@@ -22,7 +27,10 @@ export const AppointmentCard = ({ appointment, panelType }) => {
         if (data === true) {
           console.log("appointment id", appointment.appointment_id);
           toast.success("Appointment canceled successfully.");
-          window.location.reload(); // Refresh the page
+          // Trigger a re-fetch of appointments
+          if (onAppointmentCanceled) {
+            onAppointmentCanceled(appointment.appointment_id);
+          }
         } else {
           toast.error("Failed to cancel the appointment.");
         }
@@ -62,7 +70,12 @@ export const AppointmentCard = ({ appointment, panelType }) => {
       .then((data) => {
         if (data.success) {
           toast.success("Appointment marked as done successfully.");
-          window.location.reload();
+          // Trigger a re-fetch of appointments
+          if (onAppointmentUpdated) {
+            onAppointmentUpdated(appointment.appointment_id, {
+              status: "done",
+            });
+          }
         } else {
           toast.error("Failed to mark the appointment as done.");
         }

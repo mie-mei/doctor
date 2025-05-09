@@ -9,6 +9,7 @@ const AppointmentForm = ({
   initialReason = "",
   onSubmit,
   isEdit = false,
+  onAppointmentCreated,
 }) => {
   const [weekDay, setWeekDay] = useState(initialWeekDay);
   const [availableSlots, setAvailableSlots] = useState([]);
@@ -60,7 +61,10 @@ const AppointmentForm = ({
         .then((data) => {
           if (data) {
             toast.success("Appointment created successfully!");
-            window.location.reload();
+            // Trigger a re-fetch of appointments
+            if (onAppointmentCreated) {
+              onAppointmentCreated();
+            }
           } else {
             toast.error("Failed to create appointment.");
           }

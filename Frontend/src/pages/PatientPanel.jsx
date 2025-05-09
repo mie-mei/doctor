@@ -37,6 +37,18 @@ const PatientPanel = () => {
     verifyUser();
   }, [navigate]);
 
+  const handleAppointmentCreated = () => {
+    setLoading(true);
+    fetch(
+      `https://doctor-appointments-5pb4.onrender.com/routes/appointments.php?user_id=${userId}`,
+      { method: "GET", credentials: "include" }
+    )
+      .then((res) => res.json())
+      .then(setAppointments)
+      .catch(() => toast.error("Failed to fetch appointments."))
+      .finally(() => setLoading(false));
+  };
+
   return (
     <div className="patient-panel-root">
       <div className="patient-panel">
@@ -70,7 +82,10 @@ const PatientPanel = () => {
 
         <div className="panel-content">
           <h2>Book an Appointment</h2>
-          <AppointmentForm userId={userId} />
+          <AppointmentForm
+            userId={userId}
+            onAppointmentCreated={handleAppointmentCreated}
+          />
         </div>
       </div>
     </div>

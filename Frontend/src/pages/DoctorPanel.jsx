@@ -59,6 +59,26 @@ const DoctorPanel = () => {
     }
   }, [activeTab]);
 
+  const handleAppointmentCreated = () => {
+    fetch(
+      "https://doctor-appointments-5pb4.onrender.com/routes/appointments.php",
+      { method: "GET", credentials: "include" }
+    )
+      .then((res) => res.json())
+      .then(setAppointments)
+      .catch(() => toast.error("Failed to fetch appointments."));
+  };
+
+  const handleAppointmentUpdated = (appointmentId, updatedData) => {
+    setAppointments((prevAppointments) =>
+      prevAppointments.map((appointment) =>
+        appointment.appointment_id === appointmentId
+          ? { ...appointment, ...updatedData }
+          : appointment
+      )
+    );
+  };
+
   return (
     <div className="doctor-panel">
       <header className="panel-header">
@@ -99,12 +119,16 @@ const DoctorPanel = () => {
                       key={appointment.appointment_id}
                       appointment={appointment}
                       panelType="doctor"
+                      onAppointmentUpdated={handleAppointmentUpdated}
                     />
                   ))
                 ) : (
                   <p>No upcoming appointments</p>
                 )}
               </div>
+              <AppointmentForm
+                onAppointmentCreated={handleAppointmentCreated}
+              />
             </div>
           )}
 
