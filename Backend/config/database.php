@@ -1,10 +1,10 @@
 <?php
 
-$host = getenv('DB_HOST');
-$port = getenv('DB_PORT');
-$dbname = getenv('DB_NAME');
-$user = getenv('DB_USER');
-$pass = getenv('DB_PASS');
+$host = 'shinkansen.proxy.rlwy.net';
+$port = 34428;
+$dbname = 'railway';
+$user = 'root';
+$pass = 'lfkxibSXNCtnKTpzmoIhXfgwGWXLKkNs';
 
 
 try {
