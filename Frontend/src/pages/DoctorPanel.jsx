@@ -126,9 +126,7 @@ const DoctorPanel = () => {
                   <p>No upcoming appointments</p>
                 )}
               </div>
-              <AppointmentForm
-                onAppointmentCreated={handleAppointmentCreated}
-              />
+              
             </div>
           )}
 
