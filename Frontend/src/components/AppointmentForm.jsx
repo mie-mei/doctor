@@ -61,9 +61,21 @@ const AppointmentForm = ({
         .then((data) => {
           if (data) {
             toast.success("Appointment created successfully!");
+            // Reset the form fields
+            setWeekDay(initialWeekDay);
+            setSelectedSlot(initialSelectedSlot);
+            setReason(initialReason);
+
             // Trigger a re-fetch of appointments
             if (onAppointmentCreated) {
               onAppointmentCreated();
+            }
+
+            // Scroll to the appointments section
+            const appointmentsSection =
+              document.querySelector(".appointments-list");
+            if (appointmentsSection) {
+              appointmentsSection.scrollIntoView({ behavior: "smooth" });
             }
           } else {
             toast.error("Failed to create appointment.");
