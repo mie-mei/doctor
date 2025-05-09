@@ -1,11 +1,10 @@
 <?php
 
-$host = 'shinkansen.proxy.rlwy.net';
-$port = 34428;
-$dbname = 'railway';
-$user = 'root';
-$pass = 'lfkxibSXNCtnKTpzmoIhXfgwGWXLKkNs';
-
+$host = getenv('DB_HOST');
+$port = getenv('DB_PORT');
+$dbname = getenv('DB_NAME');
+$user = getenv('DB_USER');
+$pass = getenv('DB_PASS');
 
 try {
     $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4", $user, $pass);
