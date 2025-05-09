@@ -1,4 +1,12 @@
 <?php
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => '/',
+    'domain' => 'doctor-appointments-5pb4.onrender.com',
+    'secure' => true,
+    'httponly' => true,
+    'samesite' => 'None'
+]);
 session_start();
 
 header("Access-Control-Allow-Origin: https://appointments-doctor.vercel.app");
