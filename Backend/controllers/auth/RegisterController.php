@@ -19,7 +19,12 @@ class RegisterController {
             $_SESSION['user_id'] = $pdo->lastInsertId();
             $_SESSION['role'] = $role;
             $_SESSION['name'] = $name;
-            return ["message" => "Registration successful"];
+            return [
+                "message" => "Registration successful",
+                "user_id" => $_SESSION['user_id'],
+                "name" => $_SESSION['name'],
+                "role" => $_SESSION['role']
+            ];
         } else {
             return ["error" => "Registration failed"];
         }
