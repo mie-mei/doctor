@@ -40,7 +40,7 @@ const DoctorPanel = () => {
         .catch(() => toast.error("Failed to fetch appointments."));
     } else if (activeTab === "availability") {
       fetch(
-        "http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/availability.php",
+        "https://doctor-appointments-5pb4.onrender.com/routes/availability.php",
         {
           method: "GET",
           credentials: "include",
@@ -51,7 +51,7 @@ const DoctorPanel = () => {
         .catch(() => toast.error("Failed to fetch availability."));
     } else if (activeTab === "patients") {
       fetch(
-        "http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/auth/users.php?role=patient"
+        "https://doctor-appointments-5pb4.onrender.com/routes/auth/users.php?role=patient"
       )
         .then((res) => res.json())
         .then(setPatients)
@@ -59,16 +59,7 @@ const DoctorPanel = () => {
     }
   }, [activeTab]);
 
-  const handleAppointmentCreated = () => {
-    fetch(
-      "https://doctor-appointments-5pb4.onrender.com/routes/appointments.php",
-      { method: "GET", credentials: "include" }
-    )
-      .then((res) => res.json())
-      .then(setAppointments)
-      .catch(() => toast.error("Failed to fetch appointments."));
-  };
-
+ 
   const handleAppointmentUpdated = (appointmentId, updatedData) => {
     setAppointments((prevAppointments) =>
       prevAppointments.map((appointment) =>
