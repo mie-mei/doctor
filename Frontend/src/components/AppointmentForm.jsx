@@ -44,7 +44,7 @@ const AppointmentForm = ({
     } else {
       // Default create appointment logic
       fetch(
-        "https://doctor-appointments-5pb4.onrender.com/doctor-appointments/Backend/routes/appointments.php",
+        "https://doctor-appointments-5pb4.onrender.com/routes/appointments.php",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
