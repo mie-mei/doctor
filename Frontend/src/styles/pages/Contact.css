@@ -1,0 +1,150 @@
+.contact-page {
+  font-family: var(--font-family-Lato);
+  background-color: #e0f7fa; /* Light cyan background */
+}
+
+/* Container to center the navbar only on the contact page */
+.contact-navbar-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: var(--background-color);
+  padding: 40px 40px 40px 0px;
+}
+
+/* Override navbar styles when inside contact page */
+.contact-navbar-container .navbar {
+  width: auto;
+  justify-content: center;
+  gap: 30px;
+  padding: 0;
+}
+
+.contact-header {
+  width: 100%;
+  height: 500px; /* Set a fixed height for the container */
+  overflow: hidden;
+  position: relative;
+}
+
+.contact-header-image {
+  width: 100%;
+  height: 100%; /* Fill the container */
+  object-fit: cover; /* Crop the image to cover the container */
+  object-position: center; /* Center the image */
+  display: block;
+}
+
+.contact-info-container {
+  text-align: center;
+  padding: 40px 20px 60px;
+  background-color: #e0f7fa;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-info-container h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.contact-info-container h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.contact-info-container p {
+  font-size: 1rem;
+  color: var(--text-color-description);
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Grid layout for cards and map */
+.contact-grid {
+  display: flex;
+  gap: 20px; /* Space between the cards and the map */
+  margin-top: 40px;
+}
+
+.contact-info-grid {
+  flex: 1; /* Take up equal space on the left */
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  gap: 20px;
+}
+
+
+.contact-info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgba(0, 126, 133, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  border: 2px dashed #00bec5;
+}
+
+
+.icon-text {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.marker-icon .icon-text {
+  color: #e53935;
+  font-size: 28px;
+}
+
+.contact-info-card h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.contact-info-card p {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.contact-highlight {
+  color: #00bec5;
+  font-weight: 500;
+}
+
+.contact-map-container {
+  flex: 1.5; /* Ensure it takes up more space if using flexbox */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .contact-grid {
+    flex-direction: column; /* Stack cards and map vertically */
+  }
+
+  .contact-map-container {
+    margin-top: 20px;
+    height: 300px; /* Adjust map height for smaller screens */
+  }
+
+  .contact-header {
+    height: 250px; /* Smaller height on mobile */
+  }
+}

@@ -1,0 +1,64 @@
+.appointment-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.appointment-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.appointment-card p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.cancel-button:hover {
+  background-color: #c62828;
+}
+
+.appointment-card .cancel-button,
+.appointment-card .done-button,
+.appointment-card .edit-button {
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.appointment-card .cancel-button {
+  background-color: #e53935;
+}
+
+.appointment-card .cancel-button:hover {
+  background-color: #c62828;
+}
+
+.appointment-card .done-button {
+  background-color: #28a745;
+}
+
+.appointment-card .done-button:hover {
+  background-color: #218838;
+}
+.appointment-card .edit-button {
+  padding: 10px 15px;
+  background-color: #007e85;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.appointment-card .edit-button:hover {
+  background-color: #005e63;
+}

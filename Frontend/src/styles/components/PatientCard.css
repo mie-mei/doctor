@@ -1,0 +1,19 @@
+.patient-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #f9f9f9;
+}
+
+.patient-info h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.patient-info p {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: #555;
+}

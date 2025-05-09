@@ -1,0 +1,31 @@
+.navbar {
+  width: 700px; /* Default width */
+  padding-bottom: 80px;
+  display: flex;
+  justify-content: space-between; /* Space out the links */
+  align-items: center; /* Center the items vertically */
+  z-index: 1000; /* Ensure it stays above other elements */
+  font-family: Lexend Exa, sans-serif; /* Use Lexend Tera font */
+}
+
+.navbar a {
+  text-decoration: none; /* Remove underline from links */
+  color: var(--text-color-heading); /* Set link color */
+  font-weight: 500; /* Medium weight for links */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.navbar a:hover {
+  color: var(--primary-color); /* Change color on hover */
+}
+
+/* Make the navbar vertical on mobile devices */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the left */
+    gap: 20px; /* Add spacing between links */
+    width: 100%; /* Full width */
+    padding: 20px 20px 20px 0px; /* Add padding for spacing */
+  }
+}

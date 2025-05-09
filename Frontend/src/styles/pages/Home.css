@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+:root {
+  --primary-color: #007e85; /* Teal-like color */
+  --background-color: #e0f7fa; /* Light cyan background */
+  --accent-color: #6eab36; /* Green accent color */
+  --text-color-heading: #333; /* Dark text color */
+  --text-color-description: #555; /* Medium text color */
+  --button-text-color: #fff; /* White text for buttons */
+
+  --font-family-Lato: "Lato", sans-serif;
+  --font-family-Dmsans: "DM Sans", sans-serif; /* Add DM Sans as a root variable */
+  --font-size: 16px; /* Base font size */
+}
+body {
+  display: flex;
+  flex-direction: column;
+  gap: 500px;
+  overflow-x: hidden;
+  text-align: center;
+  font-family: var(--font-family-Dmsans); /* Use Lato font */
+  font-size: var(--font-size); /* Set base font size */
+  line-height: 1.5; /* Line height for readability */
+  color: var(--text-color); /* Text color */
+  background-color: var(--background-color); /* Background color */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  min-width: 320px; /* Minimum width for responsiveness */
+  min-height: 100vh; /* Full viewport height */
+}
+.hero-section {
+  background-image: url("/doctor-mohammed.png");
+  background-size: contain; /* Scale the image to fit within the container */
+  background-repeat: no-repeat;
+  background-position: right; /* Align the image to the right */
+  background-color: var(--background-color); /* Light cyan background */
+  padding: 20px 80px; /* Add padding for spacing */
+  text-align: left; /* Align text to the left */
+  color: var(--text-color); /* Use the text color variable */
+  min-height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Remove background image on mobile devices */
+@media (max-width: 768px) {
+  .hero-section {
+    background-image: none;
+  }
+}
+
+.hero-section_description {
+  max-width: 600px; /* Limit the width of the text container */
+}
+
+.hero-section_description h1 {
+  font-size: 2.5rem; /* Adjust heading size */
+  font-weight: bold;
+  line-height: 1.4;
+  color: var(--text-color);
+  font-family: var(--font-family-Lato);
+}
+
+.hero-section_description h1 span {
+  color: var(--primary-color); /* Highlighted text in teal */
+}
+
+.hero-section_description p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin-top: 20px;
+  color: var(--text-color-description);
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: var(--primary-color); /* Teal button */
+  color: var(--button-text-color); /* White text */
+  border: none;
+  border-radius: 5px;
+  font-family: Lexend Exa, sans-serif; /* Use Lexend Tera font */
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--accent-color); /* Green on hover */
+}
+
+.services-section {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 80px; /* Add padding for spacing */
+  color: var(--text-color); /* Use the text color variable */
+  text-align: center;
+  background-color: var(--background-color); /* Light cyan background */
+}
+
+.services-section h1 {
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 1.4;
+  color: var(--primary-color);
+  font-family: var(--font-family-Dmsans);
+  margin-bottom: 10px;
+}
+
+.services-section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 auto 30px;
+  color: var(--text-color-description);
+  max-width: 800px;
+}
+
+.services-section_cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.testimonials-section {
+  padding: 40px 80px;
+}
+.testimonials-section h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.testimonials-section_cards {
+  padding: 20px; /* Add padding for spacing */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}

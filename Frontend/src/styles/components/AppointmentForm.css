@@ -1,0 +1,115 @@
+/* Appointment Form Styles (moved from AppointmentForm.css) */
+.appointment-form-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+  padding: 2.5rem 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.appointment-form-container h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.form-description {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.appointment-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.appointment-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.appointment-form input,
+.appointment-form select,
+.appointment-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.appointment-form input:focus,
+.appointment-form select:focus,
+.appointment-form textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 126, 133, 0.1);
+}
+
+.appointment-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.appointment-form .form-row {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.appointment-form .form-row .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.check-slots-button,
+.book-button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 0.9rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+
+.check-slots-button:hover,
+.book-button:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-1px);
+}
+
+.available-slots-container {
+  margin-bottom: 1.5rem;
+}
+
+.available-slots-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.available-slots-container select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+  font-size: 1rem;
+}
+
+.available-slots-container select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 126, 133, 0.1);
+}
