@@ -55,7 +55,7 @@ const Register = () => {
       .then((data) => {
         if (data.message) {
           toast.success(data.message);
-          navigate("/login");
+          navigate(`/${data.role}-panel`);
         }
         if (data.error) {
           toast.error(data.error);
