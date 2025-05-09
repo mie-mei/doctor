@@ -12,7 +12,7 @@ export const AppointmentCard = ({ appointment, panelType }) => {
     }
 
     fetch(
-      `http://localhost/doctor-appointments/backend/routes/appointments.php?id=${appointment.appointment_id}`,
+      `https://doctor-appointments-5pb4.onrender.com/routes/appointments.php?id=${appointment.appointment_id}`,
       {
         method: "DELETE",
       }
@@ -44,7 +44,7 @@ export const AppointmentCard = ({ appointment, panelType }) => {
     }
 
     fetch(
-      `http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/appointments.php?id=${appointment.appointment_id}`,
+      `https://doctor-appointments-5pb4.onrender.com/doctor-appointments/Backend/routes/appointments.php?id=${appointment.appointment_id}`,
       {
         method: "PUT",
         headers: {

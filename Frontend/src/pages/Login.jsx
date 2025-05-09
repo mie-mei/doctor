@@ -26,7 +26,7 @@ const Login = () => {
     e.preventDefault();
 
     fetch(
-      "http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/auth/login.php",
+      "https://doctor-appointments-5pb4.onrender.com/routes/auth/login.php",
       {
         method: "POST",
         headers: {

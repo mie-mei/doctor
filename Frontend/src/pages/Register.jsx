@@ -37,7 +37,7 @@ const Register = () => {
     const fullName = firstName + " " + lastName;
 
     fetch(
-      "http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/auth/register.php",
+      "https://doctor-appointments-5pb4.onrender.com/routes/auth/register.php",
       {
         method: "POST",
         headers: {

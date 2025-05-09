@@ -29,7 +29,7 @@ const DoctorPanel = () => {
   useEffect(() => {
     if (activeTab === "appointments") {
       fetch(
-        "http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/appointments.php",
+        "https://doctor-appointments-5pb4.onrender.com/routes/appointments.php",
         {
           method: "GET",
           credentials: "include",

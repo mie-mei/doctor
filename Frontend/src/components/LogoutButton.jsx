@@ -7,7 +7,7 @@ export const LogoutButton = () => {
 
   const handleLogout = () => {
     fetch(
-      "http://localhost/doctor-appointments/backend/routes/auth/logout.php",
+      "https://doctor-appointments-5pb4.onrender.com/routes/auth/logout.php",
       {
         method: "POST",
         credentials: "include",
@@ -21,7 +21,7 @@ export const LogoutButton = () => {
         } else {
           toast.error("Logout failed. Please try again.");
         }
-      })
+      });
   };
 
   return (

@@ -26,7 +26,7 @@ const PatientPanel = () => {
       setUserName(auth.name);
 
       fetch(
-        `http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/appointments.php?user_id=${auth.user_id}`,
+        `https://doctor-appointments-5pb4.onrender.com/routes/appointments.php?user_id=${auth.user_id}`,
         { method: "GET", credentials: "include" }
       )
         .then((res) => res.json())

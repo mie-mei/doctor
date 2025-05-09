@@ -12,7 +12,7 @@ const EditAppointment = () => {
   useEffect(() => {
     // Fetch appointment details by ID
     fetch(
-      `http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/appointments.php?id=${id}`,
+      `https://doctor-appointments-5pb4.onrender.com/routes/appointments.php?id=${id}`,
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },

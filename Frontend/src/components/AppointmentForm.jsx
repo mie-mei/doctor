@@ -24,7 +24,7 @@ const AppointmentForm = ({
 
   const fetchAvailableSlots = () => {
     fetch(
-      `http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/availability.php?week_day=${weekDay}`
+      `https://doctor-appointments-5pb4.onrender.com/routes/availability.php?week_day=${weekDay}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -44,7 +44,7 @@ const AppointmentForm = ({
     } else {
       // Default create appointment logic
       fetch(
-        "http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/appointments.php",
+        "https://doctor-appointments-5pb4.onrender.com/doctor-appointments/Backend/routes/appointments.php",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
