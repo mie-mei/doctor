@@ -8,16 +8,14 @@ const EditAppointment = () => {
   const navigate = useNavigate();
   const [initialData, setInitialData] = useState(null);
   const [userId, setUserId] = useState(null);
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     // Fetch appointment details by ID
-    fetch(
-      `https://doctor-appointments-5pb4.onrender.com/routes/appointments.php?id=${id}`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      }
-    )
+    fetch(`${backendUrl}routes/appointments.php?id=${id}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data && data.appointment_id) {
@@ -34,20 +32,17 @@ const EditAppointment = () => {
   }, [id, navigate]);
 
   const handleEdit = ({ weekDay, selectedSlot, reason, date }) => {
-    fetch(
-      `http://doctorappointments.atwebpages.com/doctor-appointments/Backend/routes/appointments.php?id=${id}`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          user_id: userId,
-          week_day: weekDay,
-          date,
-          time: selectedSlot,
-          reason,
-        }),
-      }
-    )
+    fetch(`${backendUrl}routes/appointments.php?id=${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: userId,
+        week_day: weekDay,
+        date,
+        time: selectedSlot,
+        reason,
+      }),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {

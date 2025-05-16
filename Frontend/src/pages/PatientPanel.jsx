@@ -14,6 +14,7 @@ const PatientPanel = () => {
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState(null);
   const [userName, setUserName] = useState("");
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     async function verifyUser() {
@@ -25,10 +26,10 @@ const PatientPanel = () => {
       setUserId(auth.user_id);
       setUserName(auth.name);
 
-      fetch(
-        `https://doctor-appointments-5pb4.onrender.com/routes/appointments.php?user_id=${auth.user_id}`,
-        { method: "GET", credentials: "include" }
-      )
+      fetch(`${backendUrl}routes/appointments.php?user_id=${auth.user_id}`, {
+        method: "GET",
+        credentials: "include",
+      })
         .then((res) => res.json())
         .then(setAppointments)
         .catch(() => toast.error("Failed to fetch appointments."))
@@ -39,10 +40,10 @@ const PatientPanel = () => {
 
   const handleAppointmentCreated = () => {
     setLoading(true);
-    fetch(
-      `https://doctor-appointments-5pb4.onrender.com/routes/appointments.php?user_id=${userId}`,
-      { method: "GET", credentials: "include" }
-    )
+    fetch(`${backendUrl}routes/appointments.php?user_id=${userId}`, {
+      method: "GET",
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then(setAppointments)
       .catch(() => toast.error("Failed to fetch appointments."))

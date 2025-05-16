@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     async function verifyUser() {
@@ -36,21 +37,18 @@ const Register = () => {
 
     const fullName = firstName + " " + lastName;
 
-    fetch(
-      "https://doctor-appointments-5pb4.onrender.com/routes/auth/register.php",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          name: fullName,
-          email: email,
-          password: password,
-        }),
-      }
-    )
+    fetch(`${backendUrl}routes/auth/register.php`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        name: fullName,
+        email: email,
+        password: password,
+      }),
+    })
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {

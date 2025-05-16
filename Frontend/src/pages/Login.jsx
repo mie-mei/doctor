@@ -25,20 +25,19 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(
-      "https://doctor-appointments-5pb4.onrender.com/routes/auth/login.php",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      }
-    )
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+    fetch(`${backendUrl}routes/auth/login.php`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {

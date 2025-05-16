@@ -2,17 +2,16 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export const LogoutButton = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    fetch(
-      "https://doctor-appointments-5pb4.onrender.com/routes/auth/logout.php",
-      {
-        method: "POST",
-        credentials: "include",
-      }
-    )
+    fetch(`${backendUrl}routes/auth/logout.php`, {
+      method: "POST",
+      credentials: "include",
+    })
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {

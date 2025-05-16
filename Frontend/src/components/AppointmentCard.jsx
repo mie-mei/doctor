@@ -2,6 +2,8 @@ import { toast } from "react-hot-toast";
 import "../styles/components/AppointmentCard.css";
 import { useNavigate } from "react-router-dom";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export const AppointmentCard = ({
   appointment,
   panelType,
@@ -17,7 +19,7 @@ export const AppointmentCard = ({
     }
 
     fetch(
-      `https://doctor-appointments-5pb4.onrender.com/routes/appointments.php?id=${appointment.appointment_id}`,
+      `${backendUrl}routes/appointments.php?id=${appointment.appointment_id}`,
       {
         method: "DELETE",
       }
@@ -52,7 +54,7 @@ export const AppointmentCard = ({
     }
 
     fetch(
-      `https://doctor-appointments-5pb4.onrender.com/doctor-appointments/Backend/routes/appointments.php?id=${appointment.appointment_id}`,
+      `${backendUrl}doctor-appointments/Backend/routes/appointments.php?id=${appointment.appointment_id}`,
       {
         method: "PUT",
         headers: {

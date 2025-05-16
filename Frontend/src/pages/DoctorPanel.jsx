@@ -15,6 +15,8 @@ const DoctorPanel = () => {
   const [availability, setAvailability] = useState([]);
   const [patients, setPatients] = useState([]);
 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     async function verifyUser() {
       const auth = await checkAuth();
@@ -28,38 +30,29 @@ const DoctorPanel = () => {
 
   useEffect(() => {
     if (activeTab === "appointments") {
-      fetch(
-        "https://doctor-appointments-5pb4.onrender.com/routes/appointments.php",
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      )
+      fetch(`${backendUrl}routes/appointments.php`, {
+        method: "GET",
+        credentials: "include",
+      })
         .then((res) => res.json())
         .then(setAppointments)
         .catch(() => toast.error("Failed to fetch appointments."));
     } else if (activeTab === "availability") {
-      fetch(
-        "https://doctor-appointments-5pb4.onrender.com/routes/availability.php",
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      )
+      fetch(`${backendUrl}routes/availability.php`, {
+        method: "GET",
+        credentials: "include",
+      })
         .then((res) => res.json())
         .then(setAvailability)
         .catch(() => toast.error("Failed to fetch availability."));
     } else if (activeTab === "patients") {
-      fetch(
-        "https://doctor-appointments-5pb4.onrender.com/routes/auth/users.php?role=patient"
-      )
+      fetch(`${backendUrl}routes/auth/users.php?role=patient`)
         .then((res) => res.json())
         .then(setPatients)
         .catch(() => toast.error("Failed to fetch patients."));
     }
   }, [activeTab]);
 
- 
   const handleAppointmentUpdated = (appointmentId, updatedData) => {
     setAppointments((prevAppointments) =>
       prevAppointments.map((appointment) =>
@@ -117,7 +110,6 @@ const DoctorPanel = () => {
                   <p>No upcoming appointments</p>
                 )}
               </div>
-              
             </div>
           )}
 

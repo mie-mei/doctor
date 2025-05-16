@@ -17,6 +17,8 @@ const AppointmentForm = ({
   const [reason, setReason] = useState(initialReason);
   const [nextDate, setNextDate] = useState("");
 
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     setWeekDay(initialWeekDay);
     setSelectedSlot(initialSelectedSlot);
@@ -24,9 +26,7 @@ const AppointmentForm = ({
   }, [initialWeekDay, initialSelectedSlot, initialReason]);
 
   const fetchAvailableSlots = () => {
-    fetch(
-      `https://doctor-appointments-5pb4.onrender.com/routes/availability.php?week_day=${weekDay}`
-    )
+    fetch(`${backendUrl}routes/availability.php?week_day=${weekDay}`)
       .then((res) => res.json())
       .then((data) => {
         setAvailableSlots(data.slots);
@@ -44,19 +44,16 @@ const AppointmentForm = ({
       onSubmit({ weekDay, selectedSlot, reason, date: nextDate });
     } else {
       // Default create appointment logic
-      fetch(
-        "https://doctor-appointments-5pb4.onrender.com/routes/appointments.php",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            user_id: userId,
-            date: nextDate,
-            time: selectedSlot,
-            reason,
-          }),
-        }
-      )
+      fetch(`${backendUrl}routes/appointments.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: userId,
+          date: nextDate,
+          time: selectedSlot,
+          reason,
+        }),
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data) {
