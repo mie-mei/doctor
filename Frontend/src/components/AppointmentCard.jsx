@@ -54,7 +54,7 @@ export const AppointmentCard = ({
     }
 
     fetch(
-      `${backendUrl}doctor-appointments/Backend/routes/appointments.php?id=${appointment.appointment_id}`,
+      `${backendUrl}routes/appointments.php?id=${appointment.appointment_id}`,
       {
         method: "PUT",
         headers: {
