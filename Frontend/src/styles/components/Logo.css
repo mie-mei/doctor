@@ -1,0 +1,15 @@
+.logo {
+    font-size: 20px; /* Set the font size for the logo */
+    font-weight: bold; /* Make the logo bold */
+    color: var(--accent-color); /* Set the logo color */
+    display: flex;
+    gap: 10px;
+    font-family: Lexend Exa, sans-serif;
+}
+.logo span {
+    color: var(--primary-color);
+}
+.logo img {
+  width: 30px; /* Adjust the size of the logo image */
+  height: auto;
+}

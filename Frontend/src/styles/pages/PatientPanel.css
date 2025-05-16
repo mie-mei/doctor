@@ -1,0 +1,416 @@
+.patient-panel-root .panel-container {
+  display: flex;
+  min-height: calc(100vh - 200px);
+  background-color: var(--background-color);
+}
+
+.patient-panel-root .panel-sidebar {
+  width: 280px;
+  background-color: white;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.patient-panel-root .doctor-profile,
+.patient-panel-root .patient-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.patient-panel-root .doctor-avatar,
+.patient-panel-root .patient-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border: 3px solid var(--primary-color);
+}
+
+.patient-panel-root .doctor-avatar img,
+.patient-panel-root .patient-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.patient-panel-root .doctor-profile h3,
+.patient-panel-root .patient-profile h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.patient-panel-root .doctor-profile p,
+.patient-panel-root .patient-profile p {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+  color: var(--text-color-description);
+}
+
+.patient-panel-root .panel-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  flex-grow: 1;
+}
+
+.patient-panel-root .nav-item {
+  padding: 12px 20px;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.patient-panel-root .nav-item:hover {
+  background-color: rgba(0, 126, 133, 0.05);
+  color: var(--primary-color);
+}
+
+.patient-panel-root .nav-item.active {
+  background-color: rgba(0, 126, 133, 0.1);
+  color: var(--primary-color);
+  border-left: 3px solid var(--primary-color);
+  font-weight: 500;
+}
+
+.patient-panel-root .sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.patient-panel-root .logout-button:hover {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.patient-panel-root .panel-content {
+  flex-grow: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.patient-panel-root .content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.patient-panel-root .content-header h2 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.patient-panel-root .header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.patient-panel-root .action-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.patient-panel-root .action-button:hover {
+  background-color: var(--accent-color);
+}
+
+.patient-panel-root .date-filter,
+.patient-panel-root .search-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.patient-panel-root .table-container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.patient-panel-root .data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.patient-panel-root .data-table th,
+.patient-panel-root .data-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.patient-panel-root .data-table th {
+  background-color: #f9f9f9;
+  font-weight: 500;
+  color: #555;
+}
+
+.patient-panel-root .data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.patient-panel-root .status-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.patient-panel-root .status-badge.confirmed {
+  background-color: #e3f7e3;
+  color: #2e7d32;
+}
+
+.patient-panel-root .status-badge.pending {
+  background-color: #fff8e1;
+  color: #f57c00;
+}
+
+.patient-panel-root .status-badge.cancelled {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.patient-panel-root .action-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.patient-panel-root .icon-button {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 5px 8px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.patient-panel-root .icon-button.view {
+  color: var(--primary-color);
+}
+
+.patient-panel-root .icon-button.edit,
+.patient-panel-root .icon-button.reschedule {
+  color: #f57c00;
+}
+
+.patient-panel-root .icon-button.cancel {
+  color: #c62828;
+}
+
+.patient-panel-root .icon-button.download {
+  color: #2e7d32;
+}
+
+.patient-panel-root .icon-button.schedule {
+  color: #1976d2;
+}
+
+.patient-panel-root .icon-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.patient-panel-root .booking-form,
+.patient-panel-root .profile-form {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.patient-panel-root .booking-form .form-group,
+.patient-panel-root .profile-form .form-group {
+  margin-bottom: 20px;
+}
+
+.patient-panel-root .booking-form label,
+.patient-panel-root .profile-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.patient-panel-root .booking-form input,
+.patient-panel-root .booking-form select,
+.patient-panel-root .booking-form textarea,
+.patient-panel-root .profile-form input,
+.patient-panel-root .profile-form select,
+.patient-panel-root .profile-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.patient-panel-root .booking-form textarea,
+.patient-panel-root .profile-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.patient-panel-root .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.patient-panel-root .submit-button,
+.patient-panel-root .save-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.patient-panel-root .submit-button:hover,
+.patient-panel-root .save-button:hover {
+  background-color: var(--accent-color);
+}
+
+.patient-panel-root .schedule-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.patient-panel-root .schedule-calendar,
+.patient-panel-root .working-hours {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.patient-panel-root .schedule-calendar h3,
+.patient-panel-root .working-hours h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+.patient-panel-root .calendar-placeholder {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  color: #777;
+}
+
+.patient-panel-root .day-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.patient-panel-root .day {
+  font-weight: 500;
+  width: 100px;
+}
+
+.patient-panel-root .hours {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.patient-panel-root .hours input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.patient-panel-root .closed {
+  color: #c62828;
+  font-style: italic;
+}
+
+@media (max-width: 1024px) {
+  .patient-panel-root .schedule-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .patient-panel-root .panel-container {
+    flex-direction: column;
+  }
+
+  .patient-panel-root .panel-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .patient-panel-root .panel-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 10px;
+  }
+
+  .patient-panel-root .nav-item {
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+  }
+
+  .patient-panel-root .nav-item.active {
+    border-left: none;
+    border-bottom: 3px solid var(--primary-color);
+  }
+
+  .patient-panel-root .content-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .patient-panel-root .header-actions {
+    width: 100%;
+  }
+
+  .patient-panel-root .form-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .patient-panel-root .panel-content:last-child {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+}

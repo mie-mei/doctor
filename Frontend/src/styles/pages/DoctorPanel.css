@@ -1,0 +1,412 @@
+.doctor-panel {
+  font-family: var(--font-family-Lato);
+  background-color: var(--background-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  background-color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-name {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.logout-button {
+  padding: 8px 15px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+  margin: 0;
+}
+
+.panel-container {
+  display: flex;
+  flex: 1;
+}
+
+.panel-sidebar {
+  width: 250px;
+  background-color: white;
+  padding: 20px;
+  border-right: 1px solid #e0e0e0;
+}
+
+.panel-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  padding: 12px 25px;
+  text-align: left;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  color: #555;
+}
+
+.nav-button:hover {
+  background-color: rgba(0, 126, 133, 0.1);
+  color: var(--primary-color);
+}
+
+.nav-button.active {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+}
+
+.panel-content {
+  flex: 1;
+  padding: 30px;
+}
+
+/* Appointments Section */
+.appointments-section h2,
+.availability-section h2,
+.patients-section h2 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.appointments-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+.appointments-list.empty {
+  display: block;
+}
+
+.appointment-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.appointment-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.appointment-header h3 {
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+.appointment-date {
+  background-color: rgba(0, 126, 133, 0.1);
+  color: var(--primary-color);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.appointment-details {
+  margin-bottom: 15px;
+}
+
+.appointment-details p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.appointment-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 0.9rem;
+}
+
+.action-button:hover {
+  background-color: var(--accent-color);
+}
+
+.action-button.cancel {
+  background-color: #e53935;
+}
+
+.action-button.cancel:hover {
+  background-color: #c62828;
+}
+
+.no-data-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 30px;
+  background-color: white;
+  border-radius: 8px;
+  color: #555;
+}
+
+/* Availability Section */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.add-button {
+  padding: 10px 15px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-button:hover {
+  background-color: var(--accent-color);
+}
+
+.add-availability-form {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-availability-form h3 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group select,
+.form-group input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cancel-button,
+.save-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.save-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.save-button:hover {
+  background-color: var(--accent-color);
+}
+
+.availability-list {
+  background-color: var(--primary-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  padding: 24px 0;
+  margin-bottom: 32px;
+  min-height: 80px;
+}
+
+.availability-header,
+.availability-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding: 18px 32px;
+  font-size: 1.08rem;
+}
+
+.availability-header {
+  background: linear-gradient(
+    90deg,
+    var(--primary-color) 60%,
+    var(--accent-color) 100%
+  );
+  color: #fff;
+  font-weight: 700;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.availability-item {
+  background-color: #fff;
+  border-bottom: 1px solid #ececec;
+  transition: box-shadow 0.2s, background 0.2s;
+  font-weight: 500;
+}
+
+.availability-item:last-child {
+  border-bottom: none;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.availability-item:hover {
+  background: #f0f7fa;
+  box-shadow: 0 2px 8px rgba(0, 126, 133, 0.07);
+}
+
+.day-column {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.time-column {
+  color: #444;
+  font-size: 1rem;
+}
+
+.actions-column {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+
+/* Patients Section */
+.patients-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.patient-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.patient-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.patient-info {
+  margin-bottom: 15px;
+}
+
+.patient-info h3 {
+  margin: 0 0 10px 0;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+.patient-info p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.patient-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .panel-container {
+    flex-direction: column;
+  }
+
+  .panel-sidebar {
+    width: 100%;
+    padding: 15px 0;
+  }
+
+  .panel-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0 15px;
+  }
+
+  .nav-button {
+    padding: 10px 15px;
+    white-space: nowrap;
+  }
+
+  .appointments-list,
+  .patients-list {
+    grid-template-columns: 1fr;
+  }
+
+  .availability-header,
+  .availability-item {
+    grid-template-columns: 1fr 1fr auto;
+    font-size: 0.9rem;
+    padding: 10px 15px;
+  }
+
+
+}
+
+.availability-basic-item {
+  border: 1px solid #e0e0e0;
+  padding: 12px 18px;
+  margin-bottom: 0;
+  background: #fff;
+  font-size: 1rem;
+  color: #333;
+}
